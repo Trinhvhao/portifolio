@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Nguyễn Văn A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --secondary: #1E40AF;
+            --dark: #111827;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .bg-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #E5E7EB;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #3B82F6 0%, #1E40AF 100%);
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: var(--primary);
+        }
+        
+        /* Animated background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .animated-bg .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        /* Typing effect */
+        .typing-text {
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-gradient">NVA</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-medium">Trang chủ</a>
+                <a href="#about" class="nav-link font-medium">Giới thiệu</a>
+                <a href="#skills" class="nav-link font-medium">Kỹ năng</a>
+                <a href="#projects" class="nav-link font-medium">Dự án</a>
+                <a href="#contact" class="nav-link font-medium">Liên hệ</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-6">
+            <div class="flex justify-between items-center mb-8">
+                <a href="#home" class="text-2xl font-bold text-gradient">NVA</a>
+                <button id="close-menu" class="text-gray-700 focus:outline-none">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-6">
+                <a href="#home" class="font-medium hover:text-primary">Trang chủ</a>
+                <a href="#about" class="font-medium hover:text-primary">Giới thiệu</a>
+                <a href="#skills" class="font-medium hover:text-primary">Kỹ năng</a>
+                <a href="#projects" class="font-medium hover:text-primary">Dự án</a>
+                <a href="#contact" class="font-medium hover:text-primary">Liên hệ</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20">
+        <div class="animated-bg">
+            <div class="bubble" style="width: 100px; height: 100px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="bubble" style="width: 150px; height: 150px; top: 60%; left: 20%; animation-delay: 1s;"></div>
+            <div class="bubble" style="width: 80px; height: 80px; top: 30%; left: 60%; animation-delay: 2s;"></div>
+            <div class="bubble" style="width: 200px; height: 200px; top: 70%; left: 80%; animation-delay: 3s;"></div>
+            <div class="bubble" style="width: 120px; height: 120px; top: 10%; left: 90%; animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl mx-auto">
+                            <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 14.75c-2.34 0-7 1.17-7 3.5V20h14v-1.75c0-2.33-4.66-3.5-7-3.5zM8 9c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-gradient text-white rounded-full w-24 h-24 flex items-center justify-center shadow-lg">
+                            <span class="font-bold">5+ Năm</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 text-center md:text-left" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                        Xin chào, tôi là <span class="text-gradient">Nguyễn Văn A</span>
+                    </h1>
+                    <div class="h-12 overflow-hidden mb-6">
+                        <div id="job-titles" class="transition-transform duration-500">
+                            <p class="text-xl md:text-2xl font-medium text-gray-600 h-12 flex items-center justify-center md:justify-start">Front-end Developer</p>
+                            <p class="text-xl md:text-2xl font-medium text-gray-600 h-12 flex items-center justify-center md:justify-start">UX/UI Designer</p>
+                            <p class="text-xl md:text-2xl font-medium text-gray-600 h-12 flex items-center justify-center md:justify-start">Creative Thinker</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">Tôi chuyên thiết kế và phát triển trải nghiệm web hiện đại, đẹp mắt và thân thiện với người dùng.</p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <a href="#projects" class="btn-primary text-white px-8 py-3 rounded-full font-medium">Xem dự án</a>
+                        <a href="#contact" class="border-2 border-gray-300 hover:border-primary text-gray-700 hover:text-primary px-8 py-3 rounded-full font-medium transition duration-300">Liên hệ ngay</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-gray-400 hover:text-primary transition duration-300">
+                    <i data-feather="chevron-down" class="w-8 h-8"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Giới thiệu</h2>
+                <div class="w-24 h-1 bg-gradient mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="relative">
+                        <div class="w-full h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                            <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-white rounded-lg shadow-lg p-4 flex items-center justify-center">
+                            <svg class="w-full h-full text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold mb-6">Câu chuyện của tôi</h3>
+                    <p class="text-gray-600 mb-6">
+                        Xin chào! Tôi là Nguyễn Văn A, một Front-end Developer với hơn 5 năm kinh nghiệm trong lĩnh vực phát triển web. Tôi đam mê tạo ra những trải nghiệm số tuyệt vời, kết hợp giữa thiết kế đẹp mắt và chức năng hoàn hảo.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Tôi bắt đầu sự nghiệp của mình như một nhà thiết kế đồ họa, sau đó chuyển sang phát triển front-end để có thể biến những thiết kế của mình thành hiện thực. Kinh nghiệm này giúp tôi có cái nhìn độc đáo về cả hai khía cạnh của quá trình phát triển web.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        Mục tiêu của tôi là tạo ra những sản phẩm số không chỉ đẹp mắt mà còn mang lại giá trị thực sự cho người dùng và doanh nghiệp. Tôi tin rằng thiết kế tốt nhất là thiết kế giải quyết vấn đề một cách hiệu quả.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i data-feather="award" class="text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">5+ Năm</h4>
+                                <p class="text-sm text-gray-500">Kinh nghiệm</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i data-feather="briefcase" class="text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">50+</h4>
+                                <p class="text-sm text-gray-500">Dự án hoàn thành</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i data-feather="users" class="text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">30+</h4>
+                                <p class="text-sm text-gray-500">Khách hàng hài lòng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Kỹ năng</h2>
+                <div class="w-24 h-1 bg-gradient mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Những công nghệ và kỹ năng tôi đã tích lũy và sử dụng thành thạo trong quá trình làm việc.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <h3 class="text-2xl font-bold mb-8">Kỹ năng kỹ thuật</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">HTML/CSS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%;" data-width="95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">JavaScript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%;" data-width="90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">React</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%;" data-width="85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Vue.js</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%;" data-width="80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Tailwind CSS</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%;" data-width="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold mb-8">Kỹ năng thiết kế</h3>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-feather="layout" class="text-primary"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">UI Design</h4>
+                            <p class="text-gray-600 text-sm">Figma, Adobe XD</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-feather="users" class="text-primary"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">UX Design</h4>
+                            <p class="text-gray-600 text-sm">User Research, Wireframing</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-feather="image" class="text-primary"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Graphic Design</h4>
+                            <p class="text-gray-600 text-sm">Photoshop, Illustrator</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-feather="trending-up" class="text-primary"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">SEO</h4>
+                            <p class="text-gray-600 text-sm">On-page, Technical</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <h3 class="text-2xl font-bold mb-6">Ngôn ngữ</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="bg-white rounded-full px-6 py-2 shadow-md flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                                <span>Tiếng Việt (Bản ngữ)</span>
+                            </div>
+                            <div class="bg-white rounded-full px-6 py-2 shadow-md flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+                                <span>Tiếng Anh (Thành thạo)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Dự án</h2>
+                <div class="w-24 h-1 bg-gradient mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Một số dự án tiêu biểu tôi đã thực hiện trong quá trình làm việc.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm0 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <span class="text-white font-medium">Website</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">Thiết kế và phát triển website thương mại điện tử với đầy đủ tính năng mua sắm trực tuyến.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">React</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">MongoDB</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center hover:underline">
+                            Xem chi tiết
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm0 2v16h16V4H4zm2 2h12v1H6V6zm0 2h12v1H6V8zm0 2h12v1H6v-1zm0 3h12v5H6v-5z"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <span class="text-white font-medium">Mobile App</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Fitness Tracker App</h3>
+                        <p class="text-gray-600 mb-4">Ứng dụng theo dõi sức khỏe và luyện tập với giao diện trực quan và tính năng thông báo.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">React Native</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Firebase</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Redux</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center hover:underline">
+                            Xem chi tiết
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm0 2v16h16V4H4zm8 3l4 8h-8l4-8zm0 2.12L8.76 13h6.48L12 9.12z"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <span class="text-white font-medium">Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Analytics Dashboard</h3>
+                        <p class="text-gray-600 mb-4">Bảng điều khiển phân tích dữ liệu với biểu đồ trực quan và báo cáo chi tiết.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Vue.js</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">D3.js</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Express</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center hover:underline">
+                            Xem chi tiết
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21 3H3C1.9 3 1 3.9 1 5v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM5 10h9v2H5zm0-4h9v2H5zm0 8h5v2H5z"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <span class="text-white font-medium">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Task Management System</h3>
+                        <p class="text-gray-600 mb-4">Hệ thống quản lý công việc với tính năng phân công, theo dõi tiến độ và báo cáo.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Angular</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">TypeScript</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">MySQL</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center hover:underline">
+                            Xem chi tiết
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <span class="text-white font-medium">Landing Page</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">SaaS Product Landing</h3>
+                        <p class="text-gray-600 mb-4">Trang đích giới thiệu sản phẩm SaaS với thiết kế hiện đại và tối ưu chuyển đổi.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">HTML/CSS</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">JavaScript</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">GSAP</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center hover:underline">
+                            Xem chi tiết
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+                        </svg>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                            <span class="text-white font-medium">UI/UX Design</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Banking App Redesign</h3>
+                        <p class="text-gray-600 mb-4">Thiết kế lại giao diện ứng dụng ngân hàng với trải nghiệm người dùng cải tiến.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Figma</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Prototyping</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">User Testing</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center hover:underline">
+                            Xem chi tiết
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center justify-center px-8 py-3 border-2 border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition duration-300">
+                    Xem tất cả dự án
+                    <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Liên hệ</h2>
+                <div class="w-24 h-1 bg-gradient mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Hãy liên hệ với tôi nếu bạn có bất kỳ câu hỏi hoặc dự án nào cần thảo luận.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="md:w-1/2" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6">Gửi tin nhắn</h3>
+                        
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Họ và tên</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-300" placeholder="Nhập họ và tên của bạn">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-300" placeholder="example@email.com">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Chủ đề</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-300" placeholder="Chủ đề tin nhắn">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Tin nhắn</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-300" placeholder="Nhập nội dung tin nhắn của bạn"></textarea>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="w-full btn-primary text-white px-6 py-3 rounded-lg font-medium">Gửi tin nhắn</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                    <div class="bg-white rounded-xl shadow-lg p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">Thông tin liên hệ</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 shrink-0">
+                                    <i data-feather="mail" class="text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <a href="mailto:info@example.com" class="text-gray-600 hover:text-primary transition duration-300">info@example.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 shrink-0">
+                                    <i data-feather="phone" class="text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Điện thoại</h4>
+                                    <a href="tel:+84123456789" class="text-gray-600 hover:text-primary transition duration-300">+84 123 456 789</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 shrink-0">
+                                    <i data-feather="map-pin" class="text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Địa chỉ</h4>
+                                    <p class="text-gray-600">Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="font-bold mb-4">Kết nối với tôi</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300">
+                                    <i data-feather="linkedin" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300">
+                                    <i data-feather="github" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300">
+                                    <i data-feather="twitter" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300">
+                                    <i data-feather="instagram" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300">
+                                    <i data-feather="dribbble" class="w-5 h-5"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10 p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-bold mb-2">Giờ làm việc</h4>
+                            <p class="text-gray-600 mb-4">Tôi luôn sẵn sàng hỗ trợ bạn trong giờ làm việc:</p>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span>Thứ Hai - Thứ Sáu:</span>
+                                    <span>9:00 - 17:00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Thứ Bảy:</span>
+                                    <span>9:00 - 12:00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Chủ Nhật:</span>
+                                    <span>Nghỉ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#home" class="text-2xl font-bold">NVA</a>
+                    <p class="text-gray-400 mt-2">Front-end Developer & UX/UI Designer</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#home" class="hover:text-primary transition duration-300">Trang chủ</a>
+                    <a href="#about" class="hover:text-primary transition duration-300">Giới thiệu</a>
+                    <a href="#skills" class="hover:text-primary transition duration-300">Kỹ năng</a>
+                    <a href="#projects" class="hover:text-primary transition duration-300">Dự án</a>
+                    <a href="#contact" class="hover:text-primary transition duration-300">Liên hệ</a>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 my-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 Nguyễn Văn A. Tất cả quyền được bảo lưu.</p>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
+                        <i data-feather="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
+                        <i data-feather="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
+                        <i data-feather="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
+                        <i data-feather="instagram" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg transform translate-y-20 opacity-0 transition duration-300">
+        <i data-feather="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4 transform transition-transform duration-300 scale-95">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="check" class="w-8 h-8 text-green-500"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Gửi tin nhắn thành công!</h3>
+                <p class="text-gray-600 mb-6">Cảm ơn bạn đã liên hệ. Tôi sẽ phản hồi trong thời gian sớm nhất.</p>
+                <button id="close-modal" class="px-6 py-2 bg-primary text-white rounded-lg font-medium">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init({
+                duration: 1000,
+                once: true,
+                mirror: false
+            });
+            
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+            
+            closeMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+            
+            // Animate skill bars
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.getAttribute('data-width');
+                        entry.target.style.width = width;
+                    }
+                });
+            }, observerOptions);
+            
+            skillBars.forEach(bar => {
+                observer.observe(bar);
+            });
+            
+            // Job title rotation
+            const jobTitles = document.getElementById('job-titles');
+            let currentTitle = 0;
+            const totalTitles = jobTitles.children.length;
+            
+            setInterval(() => {
+                currentTitle = (currentTitle + 1) % totalTitles;
+                jobTitles.style.transform = `translateY(-${currentTitle * 3}rem)`;
+            }, 3000);
+            
+            // Back to top button
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+                    backToTopBtn.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+                    backToTopBtn.classList.remove('translate-y-0', 'opacity-100');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            const successModal = document.getElementById('success-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    successModal.classList.remove('hidden');
+                    contactForm.reset();
+                }, 1000);
+            });
+            
+            closeModalBtn.addEventListener('click', function() {
+                successModal.classList.add('hidden');
+            });
+            
+            // Close modal when clicking outside
+            successModal.addEventListener('click', function(e) {
+                if (e.target === successModal) {
+                    successModal.classList.add('hidden');
+                }
+            });
+            
+            // Create animated background bubbles
+            const animatedBg = document.querySelector('.animated-bg');
+            for (let i = 0; i < 10; i++) {
+                const size = Math.random() * 200 + 50;
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.top = `${Math.random() * 100}%`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.animationDelay = `${Math.random() * 10}s`;
+                bubble.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                animatedBg.appendChild(bubble);
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9683377361e25657',t:'MTc1NDAyOTA5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

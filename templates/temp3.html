@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Minh Tuấn - IT Student Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .animated-bg {
+            background: linear-gradient(-45deg, #0F2027, #203A43, #2C5364, #0A0A23);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glow-border {
+            box-shadow: 0 0 20px rgba(0, 207, 255, 0.3);
+            border: 2px solid rgba(0, 207, 255, 0.5);
+        }
+        
+        .hover-glow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 207, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-bar {
+            background: linear-gradient(90deg, #00CFFF, #7F00FF);
+            height: 8px;
+            border-radius: 4px;
+            animation: skillGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes skillGlow {
+            from { box-shadow: 0 0 5px rgba(0, 207, 255, 0.5); }
+            to { box-shadow: 0 0 15px rgba(127, 0, 255, 0.8); }
+        }
+        
+        .hobby-card {
+            background: rgba(15, 32, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 207, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .hobby-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 207, 255, 0.3);
+            border-color: rgba(0, 207, 255, 0.6);
+        }
+        
+        .project-card {
+            background: linear-gradient(135deg, rgba(15, 32, 39, 0.9), rgba(44, 83, 100, 0.7));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(127, 0, 255, 0.3);
+        }
+        
+        .project-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(127, 0, 255, 0.4);
+        }
+        
+        .floating-icon {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #0F2027, #203A43);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 207, 255, 0.5);
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+        
+        .tech-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(0, 207, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(127, 0, 255, 0.1) 0%, transparent 50%);
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00CFFF, #7F00FF);
+            transform-origin: left;
+            z-index: 1000;
+        }
+        
+        /* Gallery Album Styles */
+        .album-container {
+            position: relative;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .album-stack {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .album-photo {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .album-photo:nth-child(1) {
+            z-index: 3;
+            transform: translateZ(0) rotateZ(0deg);
+        }
+        
+        .album-photo:nth-child(2) {
+            z-index: 2;
+            transform: translateZ(-10px) rotateZ(-2deg) translateX(-3px) translateY(3px);
+            opacity: 0.9;
+        }
+        
+        .album-photo:nth-child(3) {
+            z-index: 1;
+            transform: translateZ(-20px) rotateZ(1deg) translateX(6px) translateY(-2px);
+            opacity: 0.8;
+        }
+        
+        .album-photo:nth-child(4) {
+            z-index: 0;
+            transform: translateZ(-30px) rotateZ(-1deg) translateX(-2px) translateY(5px);
+            opacity: 0.7;
+        }
+        
+        /* Hover Effects */
+        .album-container:hover .album-stack {
+            transform: translateY(-10px) scale(1.02);
+        }
+        
+        .album-container:hover .album-photo:nth-child(1) {
+            transform: translateZ(20px) rotateZ(0deg) translateX(0px) translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 207, 255, 0.4);
+        }
+        
+        .album-container:hover .album-photo:nth-child(2) {
+            transform: translateZ(10px) rotateZ(-8deg) translateX(-25px) translateY(5px);
+            opacity: 1;
+        }
+        
+        .album-container:hover .album-photo:nth-child(3) {
+            transform: translateZ(0px) rotateZ(6deg) translateX(25px) translateY(-5px);
+            opacity: 1;
+        }
+        
+        .album-container:hover .album-photo:nth-child(4) {
+            transform: translateZ(-10px) rotateZ(-3deg) translateX(-10px) translateY(15px);
+            opacity: 0.9;
+        }
+        
+        /* Expanded Album State */
+        .album-expanded .album-photo {
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .album-expanded .album-photo:nth-child(1) {
+            transform: translateX(-120px) translateY(-60px) rotateZ(-5deg) scale(0.85);
+            z-index: 4;
+        }
+        
+        .album-expanded .album-photo:nth-child(2) {
+            transform: translateX(120px) translateY(-60px) rotateZ(5deg) scale(0.85);
+            z-index: 4;
+        }
+        
+        .album-expanded .album-photo:nth-child(3) {
+            transform: translateX(-120px) translateY(60px) rotateZ(3deg) scale(0.85);
+            z-index: 4;
+        }
+        
+        .album-expanded .album-photo:nth-child(4) {
+            transform: translateX(120px) translateY(60px) rotateZ(-3deg) scale(0.85);
+            z-index: 4;
+        }
+        
+        .album-expanded .album-photo:hover {
+            transform: translateX(var(--hover-x, 0)) translateY(var(--hover-y, 0)) rotateZ(0deg) scale(1.1) !important;
+            z-index: 10 !important;
+            box-shadow: 0 25px 80px rgba(0, 207, 255, 0.6);
+        }
+        
+        .album-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 207, 255, 0.3));
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            border-radius: 16px;
+        }
+        
+        .album-container:hover .album-overlay {
+            opacity: 1;
+        }
+        
+        .album-info {
+            text-align: center;
+            padding: 1rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .album-container:hover .album-info {
+            transform: translateY(0);
+        }
+        
+        .album-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .album-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .album-btn:hover {
+            background: rgba(0, 207, 255, 0.8);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 207, 255, 0.4);
+        }
+        
+        .gallery-filter-btn.active {
+            background: linear-gradient(135deg, #00CFFF, #7F00FF);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .gallery-item {
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+        
+        .upload-btn:hover {
+            box-shadow: 0 10px 30px rgba(0, 207, 255, 0.4);
+        }
+        
+        /* Album Photo Icons */
+        .album-icon {
+            font-size: 3rem;
+            color: white;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .album-photo:hover .album-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .album-expanded .album-photo:nth-child(1) {
+                transform: translateX(-80px) translateY(-40px) rotateZ(-5deg) scale(0.7);
+            }
+            
+            .album-expanded .album-photo:nth-child(2) {
+                transform: translateX(80px) translateY(-40px) rotateZ(5deg) scale(0.7);
+            }
+            
+            .album-expanded .album-photo:nth-child(3) {
+                transform: translateX(-80px) translateY(40px) rotateZ(3deg) scale(0.7);
+            }
+            
+            .album-expanded .album-photo:nth-child(4) {
+                transform: translateX(80px) translateY(40px) rotateZ(-3deg) scale(0.7);
+            }
+        }
+        
+        /* Image Modal Styles */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .image-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-modal-content {
+            background: linear-gradient(135deg, #0F2027, #203A43);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 207, 255, 0.5);
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .upload-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .upload-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .upload-area {
+            border: 2px dashed rgba(0, 207, 255, 0.5);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: rgba(15, 32, 39, 0.3);
+        }
+        
+        .upload-area:hover {
+            border-color: rgba(0, 207, 255, 0.8);
+            background: rgba(15, 32, 39, 0.5);
+        }
+        
+        .upload-area.dragover {
+            border-color: #00CFFF;
+            background: rgba(0, 207, 255, 0.1);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="animated-bg text-gray-100 overflow-x-hidden">
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-20 backdrop-filter backdrop-blur-lg border-b border-cyan-500 border-opacity-20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-cyan-400">MT</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="hover:text-cyan-400 transition-colors">Giới thiệu</a>
+                    <a href="#skills" class="hover:text-cyan-400 transition-colors">Kỹ năng</a>
+                    <a href="#hobbies" class="hover:text-cyan-400 transition-colors">Sở thích</a>
+                    <a href="#gallery" class="hover:text-cyan-400 transition-colors">Thư viện ảnh</a>
+                    <a href="#projects" class="hover:text-cyan-400 transition-colors">Dự án</a>
+                    <a href="#contact" class="hover:text-cyan-400 transition-colors">Liên hệ</a>
+                </div>
+                <button class="md:hidden text-cyan-400" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8 text-xl">
+            <a href="#about" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Giới thiệu</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Kỹ năng</a>
+            <a href="#hobbies" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Sở thích</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Thư viện ảnh</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Dự án</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Liên hệ</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative tech-pattern pt-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="floating-icon text-6xl mb-8">
+                <i class="fas fa-code text-cyan-400"></i>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Nguyễn Minh Tuấn
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300">
+                Sinh viên Công nghệ Thông tin | Đại học Bách Khoa
+            </p>
+            <div class="flex justify-center space-x-6 mb-12">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400">3+</div>
+                    <div class="text-sm text-gray-400">Năm kinh nghiệm</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-purple-400">15+</div>
+                    <div class="text-sm text-gray-400">Dự án hoàn thành</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400">8+</div>
+                    <div class="text-sm text-gray-400">Công nghệ</div>
+                </div>
+            </div>
+            <a href="#about" class="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-3 rounded-full font-semibold hover:scale-105 transition-transform">
+                Khám phá thêm
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Giới thiệu bản thân
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <div class="w-64 h-64 mx-auto md:mx-0 mb-8 relative">
+                        <div class="w-full h-full rounded-full glow-border overflow-hidden">
+                            <div class="w-full h-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-user text-8xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-cyan-400">Xin chào! Tôi là Minh Tuấn</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Tôi là sinh viên năm 3 ngành Công nghệ Thông tin tại Đại học Bách Khoa TP.HCM. 
+                        Đam mê với lập trình web, AI và mobile development. Tôi luôn tìm kiếm cơ hội để học hỏi 
+                        và áp dụng những công nghệ mới nhất.
+                    </p>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Ngoài coding, tôi thích chụp ảnh, nghe nhạc, du lịch và khám phá thiên nhiên. 
+                        Tôi tin rằng sự cân bằng giữa công việc và cuộc sống sẽ giúp tôi sáng tạo hơn.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-cyan-500 bg-opacity-20 rounded-full text-cyan-400 border border-cyan-500 border-opacity-30">
+                            <i class="fas fa-graduation-cap mr-2"></i>Sinh viên IT
+                        </span>
+                        <span class="px-4 py-2 bg-purple-500 bg-opacity-20 rounded-full text-purple-400 border border-purple-500 border-opacity-30">
+                            <i class="fas fa-code mr-2"></i>Full-stack Developer
+                        </span>
+                        <span class="px-4 py-2 bg-cyan-500 bg-opacity-20 rounded-full text-cyan-400 border border-cyan-500 border-opacity-30">
+                            <i class="fas fa-camera mr-2"></i>Photographer
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 tech-pattern">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Kỹ năng công nghệ
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="hobby-card p-6 rounded-xl hover-glow">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-js-square text-3xl text-yellow-400 mr-4"></i>
+                        <h3 class="text-xl font-semibold">JavaScript</h3>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="skill-bar w-5/6 h-2 rounded-full"></div>
+                    </div>
+                    <p class="text-sm text-gray-400">Advanced - 85%</p>
+                </div>
+
+                <div class="hobby-card p-6 rounded-xl hover-glow">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-react text-3xl text-blue-400 mr-4"></i>
+                        <h3 class="text-xl font-semibold">React</h3>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="skill-bar w-4/5 h-2 rounded-full"></div>
+                    </div>
+                    <p class="text-sm text-gray-400">Advanced - 80%</p>
+                </div>
+
+                <div class="hobby-card p-6 rounded-xl hover-glow">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-node-js text-3xl text-green-400 mr-4"></i>
+                        <h3 class="text-xl font-semibold">Node.js</h3>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="skill-bar w-3/4 h-2 rounded-full"></div>
+                    </div>
+                    <p class="text-sm text-gray-400">Intermediate - 75%</p>
+                </div>
+
+                <div class="hobby-card p-6 rounded-xl hover-glow">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-python text-3xl text-blue-300 mr-4"></i>
+                        <h3 class="text-xl font-semibold">Python</h3>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="skill-bar w-4/5 h-2 rounded-full"></div>
+                    </div>
+                    <p class="text-sm text-gray-400">Advanced - 80%</p>
+                </div>
+
+                <div class="hobby-card p-6 rounded-xl hover-glow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-database text-3xl text-orange-400 mr-4"></i>
+                        <h3 class="text-xl font-semibold">Database</h3>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="skill-bar w-3/4 h-2 rounded-full"></div>
+                    </div>
+                    <p class="text-sm text-gray-400">Intermediate - 75%</p>
+                </div>
+
+                <div class="hobby-card p-6 rounded-xl hover-glow">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-aws text-3xl text-orange-300 mr-4"></i>
+                        <h3 class="text-xl font-semibold">Cloud & DevOps</h3>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="skill-bar w-2/3 h-2 rounded-full"></div>
+                    </div>
+                    <p class="text-sm text-gray-400">Intermediate - 65%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Sở thích & Cuộc sống
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="hobby-card p-6 rounded-xl cursor-pointer" onclick="openModal('music')">
+                    <div class="text-center">
+                        <i class="fas fa-headphones text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-3">Âm nhạc</h3>
+                        <p class="text-gray-400 text-sm">Thích nghe nhạc EDM, Lo-fi và Classical. Đôi khi cũng thử sáng tác nhạc điện tử.</p>
+                    </div>
+                </div>
+
+                <div class="hobby-card p-6 rounded-xl cursor-pointer" onclick="openModal('photography')">
+                    <div class="text-center">
+                        <i class="fas fa-camera text-4xl text-purple-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-3">Nhiếp ảnh</h3>
+                        <p class="text-gray-400 text-sm">Đam mê chụp ảnh phong cảnh, street photography và portrait. Thích khám phá góc nhìn mới.</p>
+                    </div>
+                </div>
+
+                <div class="hobby-card p-6 rounded-xl cursor-pointer" onclick="openModal('travel')">
+                    <div class="text-center">
+                        <i class="fas fa-plane text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-3">Du lịch</h3>
+                        <p class="text-gray-400 text-sm">Yêu thích khám phá những vùng đất mới, trải nghiệm văn hóa và ẩm thực địa phương.</p>
+                    </div>
+                </div>
+
+                <div class="hobby-card p-6 rounded-xl cursor-pointer" onclick="openModal('meditation')">
+                    <div class="text-center">
+                        <i class="fas fa-leaf text-4xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-3">Thiền & Yoga</h3>
+                        <p class="text-gray-400 text-sm">Thực hành thiền định và yoga để giữ tinh thần thoải mái, cân bằng cuộc sống.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Khoảnh khắc cuộc sống
+            </h2>
+            
+            <!-- Gallery Filter -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="filterGallery('all')" class="gallery-filter-btn active px-6 py-2 rounded-full border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all">
+                    <i class="fas fa-th mr-2"></i>Tất cả
+                </button>
+                <button onclick="filterGallery('travel')" class="gallery-filter-btn px-6 py-2 rounded-full border border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white transition-all">
+                    <i class="fas fa-plane mr-2"></i>Du lịch
+                </button>
+                <button onclick="filterGallery('daily')" class="gallery-filter-btn px-6 py-2 rounded-full border border-green-500 text-green-400 hover:bg-green-500 hover:text-white transition-all">
+                    <i class="fas fa-coffee mr-2"></i>Hàng ngày
+                </button>
+                <button onclick="filterGallery('tech')" class="gallery-filter-btn px-6 py-2 rounded-full border border-yellow-500 text-yellow-400 hover:bg-yellow-500 hover:text-white transition-all">
+                    <i class="fas fa-code mr-2"></i>Công nghệ
+                </button>
+                <button onclick="filterGallery('nature')" class="gallery-filter-btn px-6 py-2 rounded-full border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition-all">
+                    <i class="fas fa-leaf mr-2"></i>Thiên nhiên
+                </button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Travel Album -->
+                <div class="gallery-item travel" data-category="travel">
+                    <div class="album-container" onclick="toggleAlbum(this, 'travel')">
+                        <div class="album-stack">
+                            <div class="album-photo" style="--bg-start: #3B82F6; --bg-end: #8B5CF6;">
+                                <i class="album-icon fas fa-mountain"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #06B6D4; --bg-end: #3B82F6;">
+                                <i class="album-icon fas fa-umbrella-beach"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #10B981; --bg-end: #06B6D4;">
+                                <i class="album-icon fas fa-camera-retro"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #F59E0B; --bg-end: #10B981;">
+                                <i class="album-icon fas fa-map-marked-alt"></i>
+                            </div>
+                        </div>
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3 class="text-lg font-semibold mb-2">🌍 Du lịch</h3>
+                                <p class="text-sm opacity-90">4 ảnh • Khám phá thế giới</p>
+                                <div class="album-actions">
+                                    <button class="album-btn" onclick="event.stopPropagation(); openImageModal('travel1')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Life Album -->
+                <div class="gallery-item daily" data-category="daily">
+                    <div class="album-container" onclick="toggleAlbum(this, 'daily')">
+                        <div class="album-stack">
+                            <div class="album-photo" style="--bg-start: #F97316; --bg-end: #DC2626;">
+                                <i class="album-icon fas fa-coffee"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #EC4899; --bg-end: #8B5CF6;">
+                                <i class="album-icon fas fa-utensils"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #8B5CF6; --bg-end: #3B82F6;">
+                                <i class="album-icon fas fa-book-open"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #06B6D4; --bg-end: #10B981;">
+                                <i class="album-icon fas fa-music"></i>
+                            </div>
+                        </div>
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3 class="text-lg font-semibold mb-2">☕ Hàng ngày</h3>
+                                <p class="text-sm opacity-90">4 ảnh • Cuộc sống thường nhật</p>
+                                <div class="album-actions">
+                                    <button class="album-btn" onclick="event.stopPropagation(); openImageModal('daily1')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Album -->
+                <div class="gallery-item tech" data-category="tech">
+                    <div class="album-container" onclick="toggleAlbum(this, 'tech')">
+                        <div class="album-stack">
+                            <div class="album-photo" style="--bg-start: #10B981; --bg-end: #0D9488;">
+                                <i class="album-icon fas fa-laptop-code"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #6366F1; --bg-end: #8B5CF6;">
+                                <i class="album-icon fas fa-microchip"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #F59E0B; --bg-end: #F97316;">
+                                <i class="album-icon fas fa-robot"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #EF4444; --bg-end: #DC2626;">
+                                <i class="album-icon fas fa-code"></i>
+                            </div>
+                        </div>
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3 class="text-lg font-semibold mb-2">💻 Công nghệ</h3>
+                                <p class="text-sm opacity-90">4 ảnh • Thế giới tech</p>
+                                <div class="album-actions">
+                                    <button class="album-btn" onclick="event.stopPropagation(); openImageModal('tech1')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nature Album -->
+                <div class="gallery-item nature" data-category="nature">
+                    <div class="album-container" onclick="toggleAlbum(this, 'nature')">
+                        <div class="album-stack">
+                            <div class="album-photo" style="--bg-start: #22C55E; --bg-end: #3B82F6;">
+                                <i class="album-icon fas fa-tree"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #FBBF24; --bg-end: #F97316;">
+                                <i class="album-icon fas fa-sun"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #06B6D4; --bg-end: #0EA5E9;">
+                                <i class="album-icon fas fa-water"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #8B5CF6; --bg-end: #EC4899;">
+                                <i class="album-icon fas fa-seedling"></i>
+                            </div>
+                        </div>
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3 class="text-lg font-semibold mb-2">🌿 Thiên nhiên</h3>
+                                <p class="text-sm opacity-90">4 ảnh • Vẻ đẹp tự nhiên</p>
+                                <div class="album-actions">
+                                    <button class="album-btn" onclick="event.stopPropagation(); openImageModal('nature1')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Moments Album -->
+                <div class="gallery-item daily" data-category="daily">
+                    <div class="album-container" onclick="toggleAlbum(this, 'personal')">
+                        <div class="album-stack">
+                            <div class="album-photo" style="--bg-start: #EC4899; --bg-end: #BE185D;">
+                                <i class="album-icon fas fa-heart"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #8B5CF6; --bg-end: #7C3AED;">
+                                <i class="album-icon fas fa-smile"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #06B6D4; --bg-end: #0891B2;">
+                                <i class="album-icon fas fa-star"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #10B981; --bg-end: #059669;">
+                                <i class="album-icon fas fa-gem"></i>
+                            </div>
+                        </div>
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3 class="text-lg font-semibold mb-2">✨ Khoảnh khắc đặc biệt</h3>
+                                <p class="text-sm opacity-90">4 ảnh • Những kỷ niệm đẹp</p>
+                                <div class="album-actions">
+                                    <button class="album-btn" onclick="event.stopPropagation(); openImageModal('daily1')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Projects Album -->
+                <div class="gallery-item tech" data-category="tech">
+                    <div class="album-container" onclick="toggleAlbum(this, 'creative')">
+                        <div class="album-stack">
+                            <div class="album-photo" style="--bg-start: #F59E0B; --bg-end: #D97706;">
+                                <i class="album-icon fas fa-palette"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #EF4444; --bg-end: #DC2626;">
+                                <i class="album-icon fas fa-brush"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #8B5CF6; --bg-end: #7C3AED;">
+                                <i class="album-icon fas fa-magic"></i>
+                            </div>
+                            <div class="album-photo" style="--bg-start: #06B6D4; --bg-end: #0891B2;">
+                                <i class="album-icon fas fa-lightbulb"></i>
+                            </div>
+                        </div>
+                        <div class="album-overlay">
+                            <div class="album-info">
+                                <h3 class="text-lg font-semibold mb-2">🎨 Sáng tạo</h3>
+                                <p class="text-sm opacity-90">4 ảnh • Dự án nghệ thuật</p>
+                                <div class="album-actions">
+                                    <button class="album-btn" onclick="event.stopPropagation(); openImageModal('tech1')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="album-btn" onclick="event.stopPropagation()">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Button -->
+            <div class="text-center mt-12">
+                <button onclick="openUploadModal()" class="upload-btn bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25">
+                    <i class="fas fa-plus mr-2"></i>Thêm ảnh mới
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 tech-pattern">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Dự án nổi bật
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card p-6 rounded-xl hover-glow">
+                    <div class="mb-4">
+                        <i class="fas fa-shopping-cart text-3xl text-cyan-400 mb-3"></i>
+                        <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-400 text-sm mb-4">Website thương mại điện tử với React, Node.js và MongoDB. Tích hợp thanh toán và quản lý kho.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-500 bg-opacity-20 rounded text-xs text-blue-400">React</span>
+                            <span class="px-2 py-1 bg-green-500 bg-opacity-20 rounded text-xs text-green-400">Node.js</span>
+                            <span class="px-2 py-1 bg-yellow-500 bg-opacity-20 rounded text-xs text-yellow-400">MongoDB</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300"><i class="fab fa-github"></i></a>
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card p-6 rounded-xl hover-glow">
+                    <div class="mb-4">
+                        <i class="fas fa-robot text-3xl text-purple-400 mb-3"></i>
+                        <h3 class="text-xl font-semibold mb-2">AI Chatbot</h3>
+                        <p class="text-gray-400 text-sm mb-4">Chatbot thông minh sử dụng NLP và machine learning để hỗ trợ khách hàng tự động.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-500 bg-opacity-20 rounded text-xs text-blue-400">Python</span>
+                            <span class="px-2 py-1 bg-red-500 bg-opacity-20 rounded text-xs text-red-400">TensorFlow</span>
+                            <span class="px-2 py-1 bg-purple-500 bg-opacity-20 rounded text-xs text-purple-400">NLP</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300"><i class="fab fa-github"></i></a>
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card p-6 rounded-xl hover-glow">
+                    <div class="mb-4">
+                        <i class="fas fa-mobile-alt text-3xl text-cyan-400 mb-3"></i>
+                        <h3 class="text-xl font-semibold mb-2">Task Management App</h3>
+                        <p class="text-gray-400 text-sm mb-4">Ứng dụng quản lý công việc với React Native, có tính năng sync đa thiết bị.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-500 bg-opacity-20 rounded text-xs text-blue-400">React Native</span>
+                            <span class="px-2 py-1 bg-orange-500 bg-opacity-20 rounded text-xs text-orange-400">Firebase</span>
+                            <span class="px-2 py-1 bg-purple-500 bg-opacity-20 rounded text-xs text-purple-400">Redux</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300"><i class="fab fa-github"></i></a>
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Liên hệ với tôi
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Thông tin liên hệ</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-cyan-400 mr-4 w-6"></i>
+                            <span>minhtuan.it@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-cyan-400 mr-4 w-6"></i>
+                            <span>+84 123 456 789</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-cyan-400 mr-4 w-6"></i>
+                            <span>TP. Hồ Chí Minh, Việt Nam</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <form class="space-y-6" onsubmit="handleSubmit(event)">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-gray-300">Họ tên</label>
+                            <input type="text" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors" placeholder="Nhập họ tên của bạn">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-gray-300">Email</label>
+                            <input type="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors" placeholder="Nhập email của bạn">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-gray-300">Tin nhắn</label>
+                            <textarea rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors" placeholder="Nhập tin nhắn của bạn"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-purple-600 py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            <span class="demo-label">Gửi tin nhắn (Demo)</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">&copy; 2024 Nguyễn Minh Tuấn. Được thiết kế với ❤️ và ☕</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="musicModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-cyan-400">🎧 Âm nhạc trong cuộc sống</h3>
+                <button onclick="closeModal('musicModal')" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-400">Thể loại yêu thích:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>🎵 Electronic Dance Music (EDM)</li>
+                        <li>🎹 Lo-fi Hip Hop</li>
+                        <li>🎼 Classical & Orchestral</li>
+                        <li>🎸 Indie Rock</li>
+                        <li>🎤 Synthwave</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-400">Hoạt động âm nhạc:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>🎧 Nghe nhạc khi coding (tăng focus)</li>
+                        <li>🎹 Học piano cơ bản</li>
+                        <li>🎵 Thử sáng tác nhạc điện tử</li>
+                        <li>🎪 Tham gia các festival âm nhạc</li>
+                        <li>📱 Tạo playlist cho từng mood</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="photographyModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-cyan-400">📷 Đam mê nhiếp ảnh</h3>
+                <button onclick="closeModal('photographyModal')" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-400">Thể loại chụp:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>🌅 Landscape Photography</li>
+                        <li>🏙️ Street Photography</li>
+                        <li>👤 Portrait & People</li>
+                        <li>🌃 Night Photography</li>
+                        <li>📱 Mobile Photography</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-400">Thiết bị sử dụng:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>📸 Canon EOS R6</li>
+                        <li>🔍 Lens 24-70mm f/2.8</li>
+                        <li>📱 iPhone 14 Pro</li>
+                        <li>🎬 DJI Mini 3 Pro (Drone)</li>
+                        <li>💻 Adobe Lightroom & Photoshop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="travelModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-cyan-400">✈️ Khám phá thế giới</h3>
+                <button onclick="closeModal('travelModal')" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-400">Điểm đến yêu thích:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>🏔️ Sapa, Lào Cai</li>
+                        <li>🏖️ Phú Quốc, Kiên Giang</li>
+                        <li>🏛️ Hội An, Quảng Nam</li>
+                        <li>🌸 Đà Lạt, Lâm Đồng</li>
+                        <li>🏞️ Ninh Bình</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-400">Phong cách du lịch:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>🎒 Backpacking</li>
+                        <li>📷 Photography Tours</li>
+                        <li>🍜 Food & Culture</li>
+                        <li>🏕️ Camping & Trekking</li>
+                        <li>🏍️ Motorbike Adventures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="meditationModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-cyan-400">🧘 Thiền & Sức khỏe tinh thần</h3>
+                <button onclick="closeModal('meditationModal')" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-400">Thực hành hàng ngày:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>🧘 Thiền mindfulness (15 phút/ngày)</li>
+                        <li>🧘‍♀️ Yoga buổi sáng</li>
+                        <li>🌱 Breathing exercises</li>
+                        <li>📖 Đọc sách self-help</li>
+                        <li>🌅 Ngắm hoàng hôn</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-400">Lợi ích nhận được:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>💡 Tăng khả năng tập trung</li>
+                        <li>😌 Giảm stress và anxiety</li>
+                        <li>💪 Cải thiện sức khỏe thể chất</li>
+                        <li>🎯 Rõ ràng mục tiêu</li>
+                        <li>😊 Tích cực hơn trong cuộc sống</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="image-modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="imageModalTitle" class="text-2xl font-bold text-cyan-400"></h3>
+                <button onclick="closeImageModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div id="imageModalBody" class="text-center">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="upload-modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-cyan-400">📸 Thêm ảnh mới</h3>
+                <button onclick="closeUploadModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <form onsubmit="handleImageUpload(event)">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt text-6xl text-cyan-400 mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2 text-cyan-400">Kéo thả ảnh vào đây</h4>
+                    <p class="text-gray-400 mb-4">hoặc click để chọn file</p>
+                    <input type="file" id="imageInput" accept="image/*" multiple class="hidden">
+                    <button type="button" onclick="document.getElementById('imageInput').click()" class="bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:scale-105 transition-transform">
+                        Chọn ảnh
+                    </button>
+                </div>
+                <div class="mt-6 space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-300">Tiêu đề</label>
+                        <input type="text" id="imageTitle" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors" placeholder="Nhập tiêu đề cho ảnh">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-300">Mô tả</label>
+                        <textarea id="imageDescription" rows="3" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors" placeholder="Mô tả về ảnh"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-300">Danh mục</label>
+                        <select id="imageCategory" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors">
+                            <option value="daily">Hàng ngày</option>
+                            <option value="travel">Du lịch</option>
+                            <option value="tech">Công nghệ</option>
+                            <option value="nature">Thiên nhiên</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-purple-600 py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                        <span class="demo-label">Thêm ảnh (Demo)</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollIndicator').style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modal functions
+        function openModal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Cảm ơn bạn đã liên hệ! Đây là demo form - trong thực tế sẽ gửi email thật.');
+        }
+
+        // Parallax effect for floating icons
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.floating-icon');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Gallery Functions
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.gallery-filter-btn');
+            
+            // Close all expanded albums first
+            document.querySelectorAll('.album-expanded').forEach(album => {
+                album.classList.remove('album-expanded');
+            });
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter items
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Album Toggle Function
+        function toggleAlbum(albumContainer, albumType) {
+            const isExpanded = albumContainer.classList.contains('album-expanded');
+            
+            // Close all other expanded albums
+            document.querySelectorAll('.album-expanded').forEach(album => {
+                if (album !== albumContainer) {
+                    album.classList.remove('album-expanded');
+                }
+            });
+            
+            // Toggle current album
+            if (isExpanded) {
+                albumContainer.classList.remove('album-expanded');
+            } else {
+                albumContainer.classList.add('album-expanded');
+                
+                // Add individual photo click handlers
+                const photos = albumContainer.querySelectorAll('.album-photo');
+                photos.forEach((photo, index) => {
+                    photo.onclick = (e) => {
+                        e.stopPropagation();
+                        // Open specific image based on album type and index
+                        const imageIds = {
+                            travel: ['travel1', 'travel2', 'travel1', 'travel2'],
+                            daily: ['daily1', 'daily2', 'daily1', 'daily2'],
+                            tech: ['tech1', 'tech2', 'tech1', 'tech2'],
+                            nature: ['nature1', 'nature2', 'nature1', 'nature2'],
+                            personal: ['daily1', 'daily2', 'daily1', 'daily2'],
+                            creative: ['tech1', 'tech2', 'tech1', 'tech2']
+                        };
+                        openImageModal(imageIds[albumType][index]);
+                    };
+                    
+                    // Add hover effects for expanded photos
+                    photo.onmouseenter = (e) => {
+                        const rect = photo.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        
+                        // Calculate hover position
+                        const hoverX = index % 2 === 0 ? -120 : 120;
+                        const hoverY = index < 2 ? -60 : 60;
+                        
+                        photo.style.setProperty('--hover-x', hoverX + 'px');
+                        photo.style.setProperty('--hover-y', hoverY + 'px');
+                    };
+                });
+                
+                // Auto-close after 10 seconds of inactivity
+                setTimeout(() => {
+                    if (albumContainer.classList.contains('album-expanded')) {
+                        albumContainer.classList.remove('album-expanded');
+                    }
+                }, 10000);
+            }
+        }
+
+        // Close albums when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.album-container')) {
+                document.querySelectorAll('.album-expanded').forEach(album => {
+                    album.classList.remove('album-expanded');
+                });
+            }
+        });
+
+        // Image Modal Functions
+        const imageData = {
+            travel1: {
+                title: '🏔️ Sapa - Núi non hùng vĩ',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="aspect-video bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-mountain text-8xl text-white opacity-70"></i>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <h4 class="text-lg font-semibold text-purple-400">Chi tiết chuyến đi:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>📅 Thời gian: 3 ngày 2 đêm</li>
+                                <li>🚗 Phương tiện: Xe khách + trekking</li>
+                                <li>🏔️ Điểm đến: Fansipan, Cát Cát, Ta Van</li>
+                                <li>🌡️ Thời tiết: 15-20°C, sương mù</li>
+                                <li>📸 Thiết bị: Canon EOS R6 + Drone</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4">
+                                Chuyến trekking khám phá vẻ đẹp Tây Bắc với những thửa ruộng bậc thang 
+                                và văn hóa đặc sắc của đồng bào dân tộc.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            travel2: {
+                title: '🏖️ Phú Quốc - Biển xanh',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-umbrella-beach text-8xl text-white opacity-70"></i>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <h4 class="text-lg font-semibold text-purple-400">Kỳ nghỉ biển:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>🏖️ Bãi biển: Sao, Dài, Ông Lang</li>
+                                <li>🏊‍♂️ Hoạt động: Lặn ngắm san hô, câu cá</li>
+                                <li>🍤 Ẩm thực: Hải sản tươi sống</li>
+                                <li>🌅 Sunset: Dinh Cậu, Cable Car</li>
+                                <li>🏨 Lưu trú: Resort 4 sao</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4">
+                                Những ngày thư giãn bên bờ biển trong xanh, tận hưởng không khí 
+                                trong lành và hải sản tươi ngon.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            daily1: {
+                title: '☕ Coffee & Code',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="aspect-video bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-coffee text-8xl text-white opacity-70"></i>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <h4 class="text-lg font-semibold text-purple-400">Routine hàng ngày:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>⏰ Thời gian: 7:00 - 11:00 AM</li>
+                                <li>☕ Đồ uống: Cappuccino, Cold Brew</li>
+                                <li>💻 Công việc: Code React, học AI</li>
+                                <li>🎧 Nhạc: Lo-fi, Instrumental</li>
+                                <li>📚 Đọc: Tech blogs, Documentation</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4">
+                                Buổi sáng làm việc tại quán cà phê yêu thích, nơi tôi có thể tập trung 
+                                và sáng tạo nhất.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            daily2: {
+                title: '🍜 Ẩm thực Sài Gòn',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="aspect-video bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-utensils text-8xl text-white opacity-70"></i>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <h4 class="text-lg font-semibold text-purple-400">Món ăn yêu thích:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>🍜 Phở bò: Quận 1, Quận 3</li>
+                                <li>🥖 Bánh mì: Huyền Trang, Như Lan</li>
+                                <li>🍲 Bún bò Huế: Quận Bình Thạnh</li>
+                                <li>🧊 Chè: Ba Bà, Thái Lan</li>
+                                <li>☕ Cà phê: Trung Nguyên, Highland</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4">
+                                Khám phá các món ăn đường phố đặc trưng của Sài Gòn, 
+                                từ những quán vỉa hè đến nhà hàng cao cấp.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            tech1: {
+                title: '💻 Setup Workspace',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="aspect-video bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-8xl text-white opacity-70"></i>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <h4 class="text-lg font-semibold text-purple-400">Thiết bị làm việc:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>💻 MacBook Pro M2 16"</li>
+                                <li>🖥️ Monitor 4K 27" Dell</li>
+                                <li>⌨️ Keychron K2 Mechanical</li>
+                                <li>🖱️ Logitech MX Master 3</li>
+                                <li>🎧 Sony WH-1000XM4</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4">
+                                Góc làm việc tại nhà được setup tối ưu cho productivity, 
+                                với đầy đủ thiết bị hỗ trợ coding và design.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            tech2: {
+                title: '🎯 Tech Conference',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="aspect-video bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-microchip text-8xl text-white opacity-70"></i>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <h4 class="text-lg font-semibold text-purple-400">Sự kiện tham gia:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>🎪 DevFest Ho Chi Minh 2024</li>
+                                <li>🚀 React Vietnam Meetup</li>
+                                <li>🤖 AI/ML Workshop</li>
+                                <li>💡 Startup Weekend</li>
+                                <li>🌐 Web Summit Vietnam</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4">
+                                Tham gia các sự kiện công nghệ để học hỏi, networking 
+                                và cập nhật xu hướng mới nhất trong ngành.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            nature1: {
+                title: '🌲 Rừng Cúc Phương',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="aspect-video bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-tree text-8xl text-white opacity-70"></i>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <h4 class="text-lg font-semibold text-purple-400">Khám phá thiên nhiên:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>🦋 Động vật: Voọc, chim, bướm</li>
+                                <li>🌿 Th植物: Cây cổ thụ 1000 năm</li>
+                                <li>🥾 Trekking: 15km trail</li>
+                                <li>📸 Photography: Macro, Wildlife</li>
+                                <li>🏕️ Camping: 2 đêm trong rừng</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4">
+                                Chuyến khám phá thiên nhiên hoang dã tại vườn quốc gia Cúc Phương, 
+                                nơi có hệ sinh thái đa dạng và phong phú.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            nature2: {
+                title: '🌅 Hoàng hôn Đà Lạt',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="aspect-video bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-sun text-8xl text-white opacity-70"></i>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <h4 class="text-lg font-semibold text-purple-400">Khoảnh khắc bình yên:</h4>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>🌅 Địa điểm: Đồi Robin, Langbiang</li>
+                                <li>⏰ Thời gian: 17:30 - 18:30</li>
+                                <li>🌡️ Thời tiết: 18-22°C, mát mẻ</li>
+                                <li>📷 Kỹ thuật: Golden hour, Silhouette</li>
+                                <li>☕ Thưởng thức: Cà phê Mê Linh</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4">
+                                Những khoảnh khắc bình yên cuối ngày tại thành phố ngàn hoa, 
+                                nơi có khí hậu mát mẻ quanh năm.
+                            </p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function openImageModal(imageId) {
+            const modal = document.getElementById('imageModal');
+            const title = document.getElementById('imageModalTitle');
+            const body = document.getElementById('imageModalBody');
+            
+            const data = imageData[imageId];
+            if (data) {
+                title.textContent = data.title;
+                body.innerHTML = data.content;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Upload Modal Functions
+        function openUploadModal() {
+            const modal = document.getElementById('uploadModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeUploadModal() {
+            const modal = document.getElementById('uploadModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Drag and Drop functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const imageInput = document.getElementById('imageInput');
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        imageInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                const fileName = file.name;
+                uploadArea.innerHTML = `
+                    <i class="fas fa-check-circle text-6xl text-green-400 mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2 text-green-400">Đã chọn ảnh</h4>
+                    <p class="text-gray-400 mb-4">${fileName}</p>
+                    <button type="button" onclick="resetUploadArea()" class="bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:scale-105 transition-transform">
+                        Chọn ảnh khác
+                    </button>
+                `;
+            }
+        }
+
+        function resetUploadArea() {
+            uploadArea.innerHTML = `
+                <i class="fas fa-cloud-upload-alt text-6xl text-cyan-400 mb-4"></i>
+                <h4 class="text-xl font-semibold mb-2 text-cyan-400">Kéo thả ảnh vào đây</h4>
+                <p class="text-gray-400 mb-4">hoặc click để chọn file</p>
+                <input type="file" id="imageInput" accept="image/*" multiple class="hidden">
+                <button type="button" onclick="document.getElementById('imageInput').click()" class="bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:scale-105 transition-transform">
+                    Chọn ảnh
+                </button>
+            `;
+            // Re-attach event listeners
+            const newImageInput = document.getElementById('imageInput');
+            newImageInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+        }
+
+        function handleImageUpload(event) {
+            event.preventDefault();
+            const title = document.getElementById('imageTitle').value;
+            const description = document.getElementById('imageDescription').value;
+            const category = document.getElementById('imageCategory').value;
+            
+            alert(`Ảnh đã được thêm thành công!\n\nTiêu đề: ${title}\nMô tả: ${description}\nDanh mục: ${category}\n\nĐây là demo - trong thực tế ảnh sẽ được lưu vào server.`);
+            closeUploadModal();
+            
+            // Reset form
+            document.getElementById('imageTitle').value = '';
+            document.getElementById('imageDescription').value = '';
+            document.getElementById('imageCategory').value = 'daily';
+            resetUploadArea();
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('imageModal').addEventListener('click', (e) => {
+            if (e.target.id === 'imageModal') {
+                closeImageModal();
+            }
+        });
+
+        document.getElementById('uploadModal').addEventListener('click', (e) => {
+            if (e.target.id === 'uploadModal') {
+                closeUploadModal();
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'968c01ba51880994',t:'MTc1NDEyMTI2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

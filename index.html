@@ -1,0 +1,3178 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+    <title>Trinh Van Hao | Chuyên Web Development & Ứng dụng AI | Sinh viên CNTT</title>
+    <meta name="description"
+        content="Trang cá nhân Trinh Van Hao - Chuyên phát triển Web (React, Node.js) kết hợp AI (NLP, Computer Vision). Sinh viên CNTT với 5+ dự án thực tế về Full-stack và Machine Learning.">
+    <meta name="keywords"
+        content="Trinh Van Hao, Web Developer, Frontend Developer, React, Node.js, AI Developer, Python, Sinh viên CNTT, Portfolio">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trinhhao.dev/">
+    <meta property="og:title" content="Trinh Van Hao | Chuyên Web Dev & AI">
+    <meta property="og:description" content="Sinh viên CNTT chuyên phát triển Web ứng dụng kết hợp AI thực tế">
+    <meta property="og:image" content="https://trinhhao.dev/images/og-banner.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trinh Van Hao | Web Dev & AI">
+    <meta name="twitter:description" content="Xây dựng ứng dụng Web tích hợp AI - Sinh viên CNTT đam mê công nghệ">
+    <meta name="twitter:image" content="https://trinhhao.dev/images/twitter-banner.jpg">
+    
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Trinh Van Hao",
+        "url": "https://trinhhao.com",
+        "jobTitle": "Web & Software Developer",
+        "description": "Passionate software developer specializing in building practical web applications and real-world tech solutions. Focused on frontend/backend development, cloud integration, and automation. Always learning, always building."
+    }
+    </script>
+    <link rel="icon" type="image/png" href="/verified.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+   <style>
+    /* ==========================================================================
+   Global Styles
+   ========================================================================== */
+:root {
+    --primary-blue: #00BFFF;
+    --primary-purple: #8A2BE2;
+    --accent-gold: #FFD700;
+    --gradient-primary: linear-gradient(135deg, #00BFFF, #8A2BE2);
+    --gradient-gold: linear-gradient(135deg, #FFD700, #FF6B35);
+    --dark-bg: #0a0a0f;
+    --dark-surface: #1a1a2e;
+    --text-light: #ffffff;
+    --text-muted: #b8b8d1;
+    --neon-blue: #00D4FF;
+    --neon-purple: #8B5CF6;
+    --neon-cyan: #06FFA5;
+    --dark-bg: #0A0A0F;
+    --dark-card: #1A1A2E;
+    --tech-gray: #16213E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-light);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Particles Background
+   ========================================================================== */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(0, 191, 255, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.8));
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes titleGlow {
+    from {
+        filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.8));
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100% - 30px));
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glowSequence {
+    0%, 100% {
+        color: var(--primary-blue);
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        color: var(--accent-gold);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        transform: scale(1.05);
+    }
+}
+
+ /* Soft Skills Section */
+ .soft-skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .radar-chart-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #radarChart {
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            box-shadow: 0 0 50px rgba(0, 191, 255, 0.2);
+        }
+
+        .chart-legend {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        /* Glowing Orbs */
+        .glowing-orbs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .orb-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skill-orb {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-surface);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: orbFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .skill-orb:hover {
+            transform: scale(1.2) translateY(-10px);
+            animation-play-state: paused;
+        }
+
+        .orb-glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: pulse 2s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .orb-blue { background: radial-gradient(circle, var(--neon-blue), transparent 70%); }
+        .orb-purple { background: radial-gradient(circle, var(--neon-purple), transparent 70%); }
+        .orb-gold { background: radial-gradient(circle, var(--accent-gold), transparent 70%); }
+        .orb-cyan { background: radial-gradient(circle, #00FFFF, transparent 70%); }
+        .orb-pink { background: radial-gradient(circle, #FF69B4, transparent 70%); }
+        .orb-green { background: radial-gradient(circle, #00FF7F, transparent 70%); }
+
+        .orb-content {
+            font-size: 2.5rem;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        .skill-tooltip {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark-surface);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--neon-blue);
+            min-width: 200px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: var(--neon-blue);
+        }
+
+        .orb-container:hover .skill-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        .skill-tooltip h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-tooltip p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .skill-3d-icon {
+            font-size: 2rem;
+            margin-top: 0.5rem;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)) 
+                    drop-shadow(0 0 10px var(--neon-blue));
+            transform: perspective(100px) rotateX(15deg) rotateY(-10deg);
+            animation: icon3D 3s ease-in-out infinite;
+        }
+
+        @keyframes icon3D {
+            0%, 100% { 
+                transform: perspective(100px) rotateX(15deg) rotateY(-10deg) translateZ(0px);
+            }
+            50% { 
+                transform: perspective(100px) rotateX(20deg) rotateY(10deg) translateZ(5px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .soft-skills-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .radar-chart-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #radarChart {
+                width: 300px !important;
+                height: 300px !important;
+            }
+
+            .glowing-orbs {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .skill-orb {
+                width: 80px;
+                height: 80px;
+            }
+
+            .orb-content {
+                font-size: 1.8rem;
+            }
+
+            .skill-tooltip {
+                min-width: 180px;
+                top: -70px;
+                font-size: 0.8rem;
+            }
+
+            .skill-tooltip h4 {
+                font-size: 1rem;
+            }
+
+            .skill-tooltip p {
+                font-size: 0.8rem;
+            }
+
+            .skill-3d-icon {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glowing-orbs {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 200px;
+            }
+
+            .skill-orb {
+                width: 100px;
+                height: 100px;
+            }
+
+            .orb-content {
+                font-size: 2rem;
+            }
+
+            #radarChart {
+                width: 280px !important;
+                height: 280px !important;
+            }
+        }
+
+/* ==========================================================================
+   Highlight Styles
+   ========================================================================== */
+.highlight {
+    font-weight: 600;
+    color: var(--primary-blue);
+    background: linear-gradient(135deg, rgba(0, 191, 255, 0.2), rgba(138, 43, 226, 0.2));
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.highlight:hover {
+    color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    transform: scale(1.05);
+}
+
+.hero .highlight {
+    animation: glowSequence 2s ease-in-out infinite;
+}
+
+.hero .tagline .highlight:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.hero .tagline .highlight:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.hero .tagline .highlight:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+.hero .subtitle .highlight:nth-child(1) {
+    animation-delay: 1.2s;
+}
+
+.hero .subtitle .highlight:nth-child(2) {
+    animation-delay: 1.6s;
+}
+
+.hero .subtitle .highlight:nth-child(3) {
+    animation-delay: 2.0s;
+}
+
+.hero .additional .highlight:nth-child(1) {
+    animation-delay: 2.4s;
+}
+
+.hero .additional .highlight:nth-child(2) {
+    animation-delay: 2.8s;
+}
+
+/* ==========================================================================
+   Navbar Styles
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    background: rgba(10, 10, 15, 0.98);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-blue);
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    color: var(--text-light);
+    outline: none;
+    transition: all 0.3s ease;
+    width: 200px;
+}
+
+.search-bar input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+.dark-mode-toggle:hover {
+    color: var(--accent-gold);
+    transform: rotate(180deg);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(ellipse at center, rgba(0, 191, 255, 0.1) 0%, transparent 70%);
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 2rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgb(158, 135, 180);
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: white;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.avatar:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 0 50px rgba(0, 191, 255, 0.8);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--gradient-gold);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.cta-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* ==========================================================================
+   Scrolling Container
+   ========================================================================== */
+.scrolling-container {
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0, 191, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px 0;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid var(--primary-blue);
+}
+
+.scrolling-row {
+    display: flex;
+    gap: 30px;
+    width: fit-content;
+    animation: scroll 40s linear infinite;
+}
+
+.scrolling-row:hover {
+    animation-play-state: paused;
+}
+
+.icon-item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.icon-item:hover {
+    transform: translateY(-10px) scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    animation-play-state: paused;
+}
+
+.icon-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* ==========================================================================
+   Timeline Styles
+   ========================================================================== */
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 50%;
+    border: 3px solid var(--dark-bg);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.achievement-dot {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+}
+
+.timeline-card {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.timeline-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 212, 255, 0.2);
+}
+
+.achievement-card {
+    background: rgba(26, 26, 46, 0.9);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
+}
+
+.achievement-card:hover {
+    border-color: #FFD700;
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+}
+
+.timeline-progress {
+    transition: height 0.5s ease;
+}
+
+.timeline-item {
+    opacity: 0;
+}
+
+.timeline-item.animate__zoomIn {
+    opacity: 1;
+}
+
+.timeline-year {
+    position: relative;
+    z-index: 20;
+}
+
+.timeline-item,
+.timeline-year,
+.timeline-end {
+    opacity: 0;
+}
+
+.timeline-item.animate__fadeIn,
+.timeline-year.animate__fadeIn,
+.timeline-end.animate__fadeIn {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Card Styles (General, Neon, Certificate, Experience, Blog, Project)
+   ========================================================================== */
+.neon-card {
+    background: rgba(26, 26, 46, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.neon-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+    border-color: var(--neon-blue);
+}
+
+.cert-card {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.cert-card:hover {
+    transform: rotateX(10deg) rotateY(10deg) scale(1.05);
+}
+
+.experience-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(138, 43, 226, 0.2);
+    border-color: var(--primary-purple);
+}
+
+.experience-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.experience-card:hover::before {
+    transform: scaleX(1);
+}
+
+.experience-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.experience-card .company {
+    font-size: 1.1rem;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+}
+
+.experience-card .duration {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.experience-card ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    color: var(--text-muted);
+}
+
+.experience-card ul li {
+    margin-bottom: 0.5rem;
+}
+
+.certificate-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.certificate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(138, 43, 226, 0.2);
+    border-color: var(--primary-purple);
+}
+
+.certificate-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.certificate-card:hover::before {
+    transform: scaleX(1);
+}
+
+.certificate-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.certificate-card .issuer {
+    font-size: 1.1rem;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+}
+
+.certificate-card .date {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.blog-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 191, 255, 0.2);
+    border-color: var(--primary-blue);
+}
+
+.blog-card-image {
+    height: 200px;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-card-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.blog-card:hover .blog-card-image::before {
+    left: 100%;
+}
+
+.blog-card-content {
+    padding: 1.5rem;
+}
+
+.blog-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.blog-card p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.read-more {
+    display: inline-block;
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    color: var(--accent-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover::before {
+    transform: scaleX(1);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(138, 43, 226, 0.2);
+    border-color: var(--primary-purple);
+}
+
+.project-icon {
+    font-size: 3rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.tech-tag {
+    background: rgba(0, 191, 255, 0.2);
+    color: var(--primary-blue);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Section Styles
+   ========================================================================== */
+.section {
+    padding: 5rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.section-title {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ==========================================================================
+   About Section
+   ========================================================================== */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-item:hover {
+    background: rgba(0, 191, 255, 0.1);
+    border-color: var(--primary-blue);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.2);
+}
+
+.skill-item i {
+    font-size: 2rem;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* ==========================================================================
+   Grid Layouts (Experience, Certificates, Blog, Projects)
+   ========================================================================== */
+   .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .experience-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .experience-card {
+        padding: 1.5rem;
+    }
+
+    .experience-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .experience-card .company {
+        font-size: 1rem;
+    }
+
+    .experience-card .duration {
+        font-size: 0.85rem;
+    }
+
+    .experience-card li {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .experience-grid {
+        gap: 1rem;
+    }
+
+    .experience-card {
+        padding: 1rem;
+    }
+
+    .experience-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .experience-card .company {
+        font-size: 0.95rem;
+    }
+
+    .experience-card .duration {
+        font-size: 0.8rem;
+    }
+
+    .experience-card li {
+        font-size: 0.85rem;
+    }
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* ==========================================================================
+   Contact Section
+   ========================================================================== */
+.py-20 {
+    padding: 5rem 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-16 {
+    margin-bottom: 4rem;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+.md\:text-4xl {
+    @media (min-width: 768px) {
+        font-size: 2.25rem;
+    }
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.w-24 {
+    width: 6rem;
+}
+
+.h-1 {
+    height: 0.25rem;
+}
+
+.bg-gradient {
+    background: var(--gradient-primary);
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.max-w-2xl {
+    max-width: 42rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.md\:flex-row {
+    @media (min-width: 768px) {
+        flex-direction: row;
+    }
+}
+
+.gap-10 {
+    gap: 2.5rem;
+}
+
+.md\:w-1\/2 {
+    @media (min-width: 768px) {
+        width: 50%;
+    }
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.p-8 {
+    padding: 2rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.space-y-6>*+* {
+    margin-top: 1.5rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.mb-1 {
+    margin-bottom: 0.25rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.border {
+    border-width: 1px;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.focus\:ring-2:focus {
+    --tw-ring-offset-width: 2px;
+    box-shadow: 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-color);
+}
+
+.focus\:ring-primary:focus {
+    --tw-ring-color: var(--primary-blue);
+}
+
+.focus\:border-primary:focus {
+    border-color: var(--primary-blue);
+}
+
+.transition {
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.4);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.w-12 {
+    width: 3rem;
+}
+
+.h-12 {
+    height: 3rem;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.mr-4 {
+    margin-right: 1rem;
+}
+
+.shrink-0 {
+    flex-shrink: 0;
+}
+
+.text-primary {
+    color: var(--primary-blue);
+}
+
+.hover\:text-primary:hover {
+    color: var(--primary-blue);
+}
+
+.mt-10 {
+    margin-top: 2.5rem;
+}
+
+.space-x-4>*+* {
+    margin-left: 1rem;
+}
+
+.social-icon {
+    transition: all 0.3s ease;
+}
+
+.w-10 {
+    width: 2.5rem;
+}
+
+.h-10 {
+    height: 2.5rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.space-y-2>*+* {
+    margin-top: 0.5rem;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+#contact {
+    background: var(--dark-bg);
+}
+
+#contact .container {
+    background: var(--dark-surface);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+#contact .text-gray-600 {
+    color: var(--text-muted);
+}
+
+form input,
+form textarea {
+    font-family: 'Inter', sans-serif;
+}
+
+#contact .bg-white {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#contact .bg-blue-100 {
+    background: rgba(0, 191, 255, 0.1);
+}
+
+#contact .bg-gray-100 {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#contact .bg-gray-50 {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#contact .border-gray-300 {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+#contact .border-gray-200 {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+#contact .text-gray-700 {
+    color: var(--text-light);
+}
+
+#contact input,
+#contact textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#contact .social-icon:hover {
+    background: var(--primary-blue);
+    color: var(--text-light);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+}
+
+#contact .social-icon[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-blue);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+#contact .social-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.flex .items-start a {
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
+.footer {
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem 0 1rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.social-links a {
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.social-links a:hover {
+    color: var(--primary-blue);
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
+    transform: translateY(-3px);
+}
+
+.social-links a[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-blue);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.social-links a:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.newsletter {
+    max-width: 400px;
+    margin: 0 auto 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: var(--text-light);
+    outline: none;
+}
+
+.newsletter button {
+    background: var(--gradient-gold);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.newsletter button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+@media (max-width: 768px) {
+  .hero-content {
+    margin-top: 100px;
+  }
+}
+
+/* ==========================================================================
+   Loading Animation
+   ========================================================================== */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 191, 255, 0.3);
+    border-top: 3px solid var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ==========================================================================
+   Animation Classes
+   ========================================================================== */
+.animate__animated {
+    opacity: 0;
+}
+
+.animate__animated.animate__zoomIn {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Mobile Timeline */
+    .timeline-item .flex {
+        flex-direction: column;
+    }
+
+    .timeline-item .w-1\/2 {
+        width: 100%;
+        padding: 0;
+        text-align: left !important;
+        margin-bottom: 1rem;
+    }
+
+    .timeline-dot {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin: 1rem auto;
+    }
+
+    .timeline-card .flex {
+        justify-content: center;
+    }
+
+    .timeline-card .mr-4 {
+        margin: 0;
+    }
+
+    /* Scrolling Container */
+    .icon-item {
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+    }
+
+    .icon-item i {
+        font-size: 36px;
+    }
+
+    /* Navbar */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .search-bar {
+        display: none;
+    }
+
+    /* Hero */
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    /* About */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Grids */
+    .skills-grid,
+    .certificates-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .blog-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact */
+    #contact .md\:w-1\/2 {
+        width: 100%;
+    }
+
+    /* Newsletter */
+    .newsletter {
+        flex-direction: column;
+    }
+}
+   </style>
+</head>
+
+<body>
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+    <div id="particles-js"></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Trinhhao</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div style="display: flex; align-items: center;">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." id="searchInput">
+                </div>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero animate__animated" id="home">
+        <div class="hero-content">
+            <div class="avatar">
+                <img src="https://i.pinimg.com/736x/c6/57/3f/c6573f398933bfeb7de81a31e9373d86.jpg"
+                    alt="Trinh Van Hao - Web Developer"
+                    style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <h1>Trinh Van Hao</h1>
+            <p class="tagline"><span class="highlight">Full-stack Web Developer</span> | <span class="highlight">Ứng
+                    dụng AI</span> để tạo nên <span class="highlight">trải nghiệm khác biệt</span></p>
+            <p class="subtitle">Có kinh nghiệm với <span class="highlight">công nghệ web hiện đại</span>, kết hợp <span
+                    class="highlight">tư duy sản phẩm</span> để tạo ra <span class="highlight">giải pháp có tính ứng
+                    dụng cao</span></p>
+            <p class="additional"><span class="highlight">Sinh viên CNTT</span> với tinh thần <span
+                    class="highlight">học hỏi nhanh</span>, yêu thích <span class="highlight">tối ưu trải nghiệm người
+                    dùng</span> bằng <span class="highlight">giải pháp công nghệ hiện đại</span> và <span
+                    class="highlight">AI</span></p>
+            <div class="hero-buttons">
+                <a href="#projects" class="cta-button">
+                    <i class="fas fa-laptop-code"></i> Xem Dự Án
+                </a>
+                <a href="#contact" class="cta-button secondary">
+                    <i class="fas fa-paper-plane"></i> Liên Hệ Ngay
+                </a>
+                <a href="/assets/cv.pdf" class="cta-button" target="_blank">
+                    <i class="fas fa-file-pdf"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section animate__animated" id="about">
+        <h2 class="section-title">Về tôi</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Xin chào! Mình là Hào – một sinh viên CNTT đam mê kiến tạo tương lai số qua <strong>Full-stack Web Development</strong> và <strong>AI</strong>.
+                    <br>Từ ứng dụng web tối ưu trải nghiệm người dùng đến các hệ thống AI-IoT thông minh.</p>
+                <p>Mình không ngừng học hỏi, luôn sẵn sàng chinh phục thử thách mới và mang lại giá trị thực tiễn. Với các thành tích như <strong>Giải Nhất Lập trình Frontend</strong>, <strong>Giải Nhì AI IoT</strong>, và nhiều học bổng xuất sắc, mình mong muốn được đồng hành cùng những dự án đột phá, nơi công nghệ và sáng tạo hòa quyện!</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <div>HTML5 / CSS3 / JavaScript</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-react"></i>
+                    <div>React.js</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-server"></i>
+                    <div>Node.js / FastAPI</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <div>Python / Java / Bash</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-brain"></i>
+                    <div>AI / ML / LLM</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-microchip"></i>
+                    <div>PyTorch / TensorFlow</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <div>MLOps / Deployment</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <div>SQL / NoSQL / Git</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-linux"></i>
+                    <div>Linux & Shell</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="scrolling-container">
+        <div class="scrolling-row" style="--total-items: 28;">
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="Sass"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" alt="GraphQL"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" alt="Webpack"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="NPM"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="AngularJS"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase"></div>
+            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"></div>
+        </div>
+    </div>
+
+    <section id="soft-skills" class="section">
+        <h2 class="section-title fade-in">Kỹ năng mềm</h2>
+        <div class="soft-skills-container fade-in">
+            <div class="radar-chart-container">
+                <canvas id="radarChart" width="500" height="500"></canvas>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--gradient-gold);"></div>
+                        <span>Kỹ năng mềm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glowing-orbs">
+                <div class="orb-container">
+                    <div class="skill-orb" data-skill="Giao tiếp" data-level="90" data-description="Khả năng truyền đạt ý tưởng rõ ràng và lắng nghe hiệu quả">
+                        <div class="orb-glow orb-blue"></div>
+                        <div class="orb-content"><i class="fas fa-comments"></i></div>
+                    </div>
+                    <div class="skill-tooltip">
+                        <h4>Giao tiếp</h4>
+                        <p>Khả năng truyền đạt ý tưởng rõ ràng và lắng nghe hiệu quả</p>
+                        <div class="skill-3d-icon"><i class="fas fa-comment-alt"></i></div>
+                    </div>
+                </div>
+                <div class="orb-container">
+                    <div class="skill-orb" data-skill="Quản lý thời gian" data-level="85" data-description="Sắp xếp công việc hiệu quả và đáp ứng deadline">
+                        <div class="orb-glow orb-purple"></div>
+                        <div class="orb-content"><i class="fas fa-clock"></i></div>
+                    </div>
+                    <div class="skill-tooltip">
+                        <h4>Quản lý thời gian</h4>
+                        <p>Sắp xếp công việc hiệu quả và đáp ứng deadline</p>
+                        <div class="skill-3d-icon"><i class="fas fa-calendar-check"></i></div>
+                    </div>
+                </div>
+                <div class="orb-container">
+                    <div class="skill-orb" data-skill="Làm việc nhóm" data-level="88" data-description="Hợp tác tốt và đóng góp tích cực trong team">
+                        <div class="orb-glow orb-gold"></div>
+                        <div class="orb-content"><i class="fas fa-users"></i></div>
+                    </div>
+                    <div class="skill-tooltip">
+                        <h4>Làm việc nhóm</h4>
+                        <p>Hợp tác tốt và đóng góp tích cực trong team</p>
+                        <div class="skill-3d-icon"><i class="fas fa-user-friends"></i></div>
+                    </div>
+                </div>
+                <div class="orb-container">
+                    <div class="skill-orb" data-skill="Tư duy phản biện" data-level="82" data-description="Phân tích vấn đề một cách logic và khách quan">
+                        <div class="orb-glow orb-cyan"></div>
+                        <div class="orb-content"><i class="fas fa-brain"></i></div>
+                    </div>
+                    <div class="skill-tooltip">
+                        <h4>Tư duy phản biện</h4>
+                        <p>Phân tích vấn đề một cách logic và khách quan</p>
+                        <div class="skill-3d-icon"><i class="fas fa-bullseye"></i></div>
+                    </div>
+                </div>
+                <div class="orb-container">
+                    <div class="skill-orb" data-skill="Marketing" data-level="70" data-description="Hiểu biết cơ bản về marketing digital và content">
+                        <div class="orb-glow orb-pink"></div>
+                        <div class="orb-content"><i class="fas fa-chart-line"></i></div>
+                    </div>
+                    <div class="skill-tooltip">
+                        <h4>Marketing</h4>
+                        <p>Hiểu biết cơ bản về marketing digital và content</p>
+                        <div class="skill-3d-icon"><i class="fas fa-rocket"></i></div>
+                    </div>
+                </div>
+                <div class="orb-container">
+                    <div class="skill-orb" data-skill="Sáng tạo" data-level="85" data-description="Tìm ra giải pháp độc đáo và tư duy outside the box">
+                        <div class="orb-glow orb-green"></div>
+                        <div class="orb-content"><i class="fas fa-lightbulb"></i></div>
+                    </div>
+                    <div class="skill-tooltip">
+                        <h4>Sáng tạo</h4>
+                        <p>Tìm ra giải pháp độc đáo và tư duy outside the box</p>
+                        <div class="skill-3d-icon"><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Section Experience -->
+<section class="section animate__animated" id="experience">
+    <h2 class="section-title">Kinh nghiệm làm việc</h2>
+    <div class="experience-grid">
+        <div class="experience-card">
+            <h3>Marketing Truyền thông</h3>
+            <div class="company">Công ty CP Zaka Edu</div>
+            <div class="duration">08/2024 - Hiện tại</div>
+            <ul>
+                <li>Chỉ đạo và quản lý đội ngũ marketing gồm 5 thành viên, xây dựng chiến lược truyền thông tích hợp trên các nền tảng số.</li>
+                <li>Điều phối nhóm 5-7 thành viên, triển khai chiến lược nội dung đa nền tảng, nâng cao tương tác người dùng.</li>
+                <li>Lên ý tưởng, viết nội dung bài đăng, thiết kế hình ảnh và dựng video ngắn trên các nền tảng: Facebook, Instagram, TikTok, Zalo OA.</li>
+                <li>Phối hợp tổ chức sự kiện offline, quảng bá thương hiệu đến 500 khách hàng tiềm năng tại Hà Nội..</li>
+            </ul>
+        </div>
+        <div class="experience-card">
+            <h3>Thực tập sinh</h3>
+            <div class="company">Lab AIOT DNU</div>
+            <div class="duration">05/2025 - 08/2025</div>
+            <ul>
+                <li>Tham gia các dự án thực tế về trí tuệ nhân tạo và IoT, đóng góp vào phát triển hệ thống thông minh cho ứng dụng doanh nghiệp.</li>
+                <li>Hỗ trợ thiết kế, phát triển và thử nghiệm các ứng dụng AIOT, đảm bảo tích hợp liền mạch với các thiết bị IoT trong môi trường thực tế.</li>
+                <li>Tham gia dự án xử lý ngôn ngữ tự nhiên (NLP) cho hệ thống thẩm mỹ viện toàn quốc, tối ưu hóa chatbot để nâng cao trải nghiệm khách hàng.</li>
+                <li>Phân tích và xử lý dữ liệu đầu vào cho các mô hình AI, đạt độ chính xác dự đoán trên 90% trong các bài kiểm tra hiệu suất.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-20 animate__animated">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">
+                Chứng chỉ & Thành tích
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <!-- Timeline Container -->
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 via-purple-500 to-green-400 opacity-30"></div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-0 bg-gradient-to-b from-cyan-400 via-purple-500 to-green-400 timeline-progress"></div>
+                    <!-- Timeline Items -->
+                    <div class="space-y-12">
+                        <!-- 2025 Items -->
+                        <div class="timeline-year fade-in-up">
+                            <div class="flex justify-center mb-8">
+                                <div class="bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-2 rounded-full">
+                                    <span class="orbitron font-bold text-lg text-black">2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Học bổng xuất sắc -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <div class="timeline-card achievement-card rounded-xl p-6">
+                                        <div class="flex items-center justify-end mb-4">
+                                            <div class="mr-4">
+                                                <h3 class="orbitron font-bold text-blue-400 text-lg">Học bổng Xuất sắc</h3>
+                                                <p class="text-sm text-gray-300">🏆 Thành tích nổi bật</p>
+                                                <p class="text-xs text-gray-400 mt-1">Năm học 2024-2025 • Tháng 1/2025</p>
+                                            </div>
+                                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                                                <span class="text-2xl">🎓</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Học bổng dành cho sinh viên có thành tích học tập xuất sắc vượt trội và đóng góp nổi bật trong nghiên cứu.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-dot achievement-dot"></div>
+                                <div class="w-1/2 pl-8"></div>
+                            </div>
+                        </div>
+                        <!-- Giải nhất lập trình Frontend -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8"></div>
+                                <div class="timeline-dot achievement-dot"></div>
+                                <div class="w-1/2 pl-8">
+                                    <div class="timeline-card achievement-card rounded-xl p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4">
+                                                <span class="text-2xl">🥇</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="orbitron font-bold text-yellow-400 text-lg">Giải Nhất Lập trình Frontend</h3>
+                                                <p class="text-sm text-gray-300">🏆 Thành tích nổi bật</p>
+                                                <p class="text-xs text-gray-400 mt-1">Cuộc thi Lập trình FE DNU 2025 • Tháng 3/2025</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Giải nhất cuộc thi lập trình Frontend với dự án xây dựng giao diện web tương tác sử dụng React và Tailwind CSS.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Giải nhì AI IoT -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <div class="timeline-card achievement-card rounded-xl p-6">
+                                        <div class="flex items-center justify-end mb-4">
+                                            <div class="mr-4">
+                                                <h3 class="orbitron font-bold text-yellow-400 text-lg">Giải Nhì AI IoT</h3>
+                                                <p class="text-sm text-gray-300">🏆 Thành tích nổi bật</p>
+                                                <p class="text-xs text-gray-400 mt-1">Cuộc thi Sản phẩm AI&IOT Tiêu biểu 2025 • Tháng 6/2025</p>
+                                            </div>
+                                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                                                <span class="text-2xl">🥈</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Giải nhì với dự án ứng dụng AI và IoT phát hiện hành vi làm việc của tài xế, tối ưu hóa an toàn giao thông.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-dot achievement-dot"></div>
+                                <div class="w-1/2 pl-8"></div>
+                            </div>
+                        </div>
+                        <!-- 2024 Items -->
+                        <div class="timeline-year fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="flex justify-center mb-8">
+                                <div class="bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-2 rounded-full">
+                                    <span class="orbitron font-bold text-lg text-black">2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Nhân viên xuất sắc Zaka Edu -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 0.5s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8"></div>
+                                <div class="timeline-dot achievement-dot"></div>
+                                <div class="w-1/2 pl-8">
+                                    <div class="timeline-card achievement-card rounded-xl p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4">
+                                                <span class="text-2xl">🏆</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="orbitron font-bold text-yellow-400 text-lg">Nhân viên Xuất sắc Zaka Edu</h3>
+                                                <p class="text-sm text-gray-300">🏆 Thành tích nổi bật</p>
+                                                <p class="text-xs text-gray-400 mt-1">Zaka Edu • Tháng 12/2024</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Được vinh danh là nhân viên xuất sắc nhờ đóng góp trong phát triển nền tảng học trực tuyến tại Zaka Edu.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Build Blockchain Applications With Python -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 0.6s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <div class="timeline-card neon-card rounded-xl p-6">
+                                        <div class="flex items-center justify-end mb-4">
+                                            <div class="mr-4">
+                                                <h3 class="orbitron font-bold text-indigo-400 text-lg">Build Blockchain Applications With Python</h3>
+                                                <p class="text-sm text-gray-300">Advanced Certification</p>
+                                                <p class="text-xs text-gray-400 mt-1">VBi and Algorand • Tháng 11/2024</p>
+                                            </div>
+                                            <div class="w-16 h-16 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full flex items-center justify-center">
+                                                <span class="text-2xl">🔗</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Chứng chỉ về phát triển ứng dụng Blockchain sử dụng Python, tập trung vào các giải pháp phi tập trung trên nền tảng Algorand.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                                <div class="w-1/2 pl-8"></div>
+                            </div>
+                        </div>
+                        <!-- Quán quân kỹ năng mềm -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 0.7s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <div class="timeline-card achievement-card rounded-xl p-6">
+                                        <div class="flex items-center justify-end mb-4">
+                                            <div class="mr-4">
+                                                <h3 class="orbitron font-bold text-yellow-400 text-lg">Quán quân Kỹ năng Mềm</h3>
+                                                <p class="text-sm text-gray-300">🏆 Thành tích nổi bật</p>
+                                                <p class="text-xs text-gray-400 mt-1">Cuộc thi Kỹ năng Mềm 2024 • Tháng 10/2024</p>
+                                            </div>
+                                            <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                                                <span class="text-2xl">🥇</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Đạt quán quân trong cuộc thi kỹ năng mềm với các bài thuyết trình và giải quyết vấn đề xuất sắc.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-dot achievement-dot"></div>
+                                <div class="w-1/2 pl-8"></div>
+                            </div>
+                        </div>
+                        <!-- Học bổng giỏi liên tiếp các kỳ -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 0.8s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8"></div>
+                                <div class="timeline-dot achievement-dot"></div>
+                                <div class="w-1/2 pl-8">
+                                    <div class="timeline-card achievement-card rounded-xl p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                                                <span class="text-2xl">🎓</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="orbitron font-bold text-blue-400 text-lg">Học bổng Giỏi Liên tiếp các kỳ</h3>
+                                                <p class="text-sm text-gray-300">🏆 Thành tích nổi bật</p>
+                                                <p class="text-xs text-gray-400 mt-1">Năm học 2023-2024 • Tháng 8/2024</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Nhận học bổng giỏi liên tiếp các kỳ nhờ duy trì thành tích học tập xuất sắc (GPA > 3.7).
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 2023 Items -->
+                        <div class="timeline-year fade-in-up" style="animation-delay: 0.9s;">
+                            <div class="flex justify-center mb-8">
+                                <div class="bg-gradient-to-r from-purple-400 to-green-500 px-6 py-2 rounded-full">
+                                    <span class="orbitron font-bold text-lg text-black">2023</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Python for Data Science -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 1.0s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <div class="timeline-card neon-card rounded-xl p-6">
+                                        <div class="flex items-center justify-end mb-4">
+                                            <div class="mr-4">
+                                                <h3 class="orbitron font-bold text-green-400 text-lg">Python for Data Science</h3>
+                                                <p class="text-sm text-gray-300">Advanced Certification</p>
+                                                <p class="text-xs text-gray-400 mt-1">IBM • Tháng 10/2023</p>
+                                            </div>
+                                            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                                                <span class="text-2xl">🐍</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Chứng chỉ nâng cao về lập trình Python ứng dụng trong khoa học dữ liệu, bao gồm phân tích dữ liệu và machine learning.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                                <div class="w-1/2 pl-8"></div>
+                            </div>
+                        </div>
+                        <!-- Nghiên cứu khoa học Blockchain -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 1.1s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8"></div>
+                                <div class="timeline-dot"></div>
+                                <div class="w-1/2 pl-8">
+                                    <div class="timeline-card neon-card rounded-xl p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-16 h-16 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                                                <span class="text-2xl">🔗</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="orbitron font-bold text-indigo-400 text-lg">Nghiên cứu Khoa học Blockchain</h3>
+                                                <p class="text-sm text-gray-300">Chứng nhận Nghiên cứu</p>
+                                                <p class="text-xs text-gray-400 mt-1">Đại học Bách Khoa Hà Nội • Tháng 9/2023</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Chứng nhận nghiên cứu ứng dụng Blockchain vào quản lý dữ liệu y tế, đảm bảo an toàn và minh bạch.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Học bổng giỏi liên tiếp các kỳ -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 1.2s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <div class="timeline-card achievement-card rounded-xl p-6">
+                                        <div class="flex items-center justify-end mb-4">
+                                            <div class="mr-4">
+                                                <h3 class="orbitron font-bold text-blue-400 text-lg">Học bổng Giỏi Liên tiếp các kỳ</h3>
+                                                <p class="text-sm text-gray-300">🏆 Thành tích nổi bật</p>
+                                                <p class="text-xs text-gray-400 mt-1">Năm học 2022-2023 • Tháng 8/2023</p>
+                                            </div>
+                                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                                                <span class="text-2xl">🎓</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Nhận học bổng giỏi liên tiếp các kỳ nhờ duy trì thành tích học tập xuất sắc (GPA > 3.7).
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-dot achievement-dot"></div>
+                                <div class="w-1/2 pl-8"></div>
+                            </div>
+                        </div>
+                        <!-- 2022 Items -->
+                        <div class="timeline-year fade-in-up" style="animation-delay: 1.3s;">
+                            <div class="flex justify-center mb-8">
+                                <div class="bg-gradient-to-r from-purple-400 to-green-500 px-6 py-2 rounded-full">
+                                    <span class="orbitron font-bold text-lg text-black">2022</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Học bổng giỏi liên tiếp các kỳ -->
+                        <div class="timeline-item fade-in-up" style="animation-delay: 1.4s;">
+                            <div class="flex items-center">
+                                <div class="w-1/2 pr-8"></div>
+                                <div class="timeline-dot achievement-dot"></div>
+                                <div class="w-1/2 pl-8">
+                                    <div class="timeline-card achievement-card rounded-xl p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                                                <span class="text-2xl">🎓</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="orbitron font-bold text-blue-400 text-lg">Học bổng Giỏi Liên tiếp các kỳ</h3>
+                                                <p class="text-sm text-gray-300">🏆 Thành tích nổi bật</p>
+                                                <p class="text-xs text-gray-400 mt-1">Năm học 2021-2022 • Tháng 8/2022</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-300">
+                                            Nhận học bổng giỏi liên tiếp các kỳ nhờ duy trì thành tích học tập xuất sắc (GPA > 3.7).
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeline End -->
+                        <div class="timeline-end fade-in-up" style="animation-delay: 1.5s;">
+                            <div class="flex justify-center">
+                                <div class="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center">
+                                    <span class="text-sm">🚀</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Timeline Stats -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 fade-in-up">
+                    <div class="text-center p-6 neon-card rounded-xl">
+                        <div class="text-3xl font-bold text-cyan-400 orbitron mb-2">7</div>
+                        <div class="text-sm text-gray-400">Chứng chỉ</div>
+                    </div>
+                    <div class="text-center p-6 neon-card rounded-xl">
+                        <div class="text-3xl font-bold text-purple-400 orbitron mb-2">5</div>
+                        <div class="text-sm text-gray-400">Giải thưởng</div>
+                    </div>
+                    <div class="text-center p-6 neon-card rounded-xl">
+                        <div class="text-3xl font-bold text-green-400 orbitron mb-2">1</div>
+                        <div class="text-sm text-gray-400">Năm kinh nghiệm</div>
+                    </div>
+                    <div class="text-center p-6 neon-card rounded-xl">
+                        <div class="text-3xl font-bold text-yellow-400 orbitron mb-2">3.7</div>
+                        <div class="text-sm text-gray-400">GPA hiện tại</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <section class="section animate__animated" id="blog">
+        <h2 class="section-title">Latest Blog Posts</h2>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar"></i> 15/12/2024</span>
+                        <span><i class="fas fa-clock"></i> 5 min read</span>
+                    </div>
+                    <h3>Khám Phá Thế Giới AI: Từ Cơ Bản Đến Nâng Cao</h3>
+                    <p>Hướng dẫn chi tiết về Machine Learning và Deep Learning cho người mới bắt đầu. Tìm hiểu các khái
+                        niệm cơ bản và ứng dụng thực tế...</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar"></i> 12/12/2024</span>
+                        <span><i class="fas fa-clock"></i> 8 min read</span>
+                    </div>
+                    <h3>Xây Dựng Website Hiện Đại với HTML5 & CSS3</h3>
+                    <p>Hướng dẫn tạo website responsive với các hiệu ứng đẹp mắt và tối ưu hiệu suất. Từ thiết kế đến
+                        triển khai...</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar"></i> 10/12/2024</span>
+                        <span><i class="fas fa-clock"></i> 6 min read</span>
+                    </div>
+                    <h3>Tương Lai của AI trong Phát Triển Web</h3>
+                    <p>Khám phá cách AI đang thay đổi ngành phát triển web và những công cụ mới nhất giúp tăng năng
+                        suất...</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="section animate__animated" id="projects">
+        <h2 class="section-title">Dự Án Nổi Bật</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <i class="fas fa-lock project-icon"></i>
+                <h3>SecureChat</h3>
+                <p>Hệ thống nhắn tin an toàn sử dụng TripleDES và RSA, hỗ trợ mã hóa P2P để đảm bảo bảo mật.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">RSA</span>
+                    <span class="tech-tag">Triple DES</span>
+                    <span class="tech-tag">P2P</span>
+                </div>
+                <a href="#" class="cta-button">View Demo</a>
+            </div>
+            <div class="project-card">
+                <i class="fas fa-car project-icon"></i>
+                <h3>Drowsiness Detection</h3>
+                <p>Hệ thống thông minh phát hiện buồn ngủ của tài xế bằng YOLO, cảnh báo sớm để tăng an toàn giao thông.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">YOLO</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">AI</span>
+                </div>
+                <a href="#" class="cta-button">View Demo</a>
+            </div>
+            <div class="project-card">
+                <i class="fas fa-file-upload project-icon"></i>
+                <h3>Secure File Transfer</h3>
+                <p>Hệ thống gửi file an toàn qua cloud, sử dụng RSA và AES để mã hóa dữ liệu.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">RSA</span>
+                    <span class="tech-tag">AES</span>
+                    <span class="tech-tag">Cloud</span>
+                </div>
+                <a href="#" class="cta-button">View Demo</a>
+            </div>
+            <div class="project-card">
+                <i class="fas fa-chart-bar project-icon"></i>
+                <h3>BigData Realty Trends</h3>
+                <p>Phân tích xu hướng bất động sản từ dữ liệu lớn, sử dụng Hadoop, R và Python để trực quan hóa.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Hadoop</span>
+                    <span class="tech-tag">R</span>
+                    <span class="tech-tag">Python</span>
+                </div>
+                <a href="#" class="cta-button">View Demo</a>
+            </div>
+            <div class="project-card">
+                <i class="fas fa-cloud-sun project-icon"></i>
+                <h3>Weather App Flutter</h3>
+                <p>Ứng dụng dự báo thời tiết trên điện thoại, tích hợp Firebase để cập nhật dữ liệu thời gian thực.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">Firebase</span>
+                </div>
+                <a href="#" class="cta-button">View Demo</a>
+            </div>
+            <div class="project-card">
+                <i class="fas fa-shopping-cart project-icon"></i>
+                <h3>SportStore</h3>
+                <p>Website thương mại điện tử thể thao theo mô hình MVC, tích hợp cơ sở dữ liệu SQL Server và C#.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">SQL Server</span>
+                    <span class="tech-tag">MVC</span>
+                </div>
+                <a href="#" class="cta-button">View Demo</a>
+            </div>
+            <div class="project-card">
+                <i class="fas fa-link project-icon"></i>
+                <h3>Record Healthcare</h3>
+                <p>Ứng dụng blockchain quản lý dữ liệu y tế, sử dụng Solidity, Python, Ethereum và giao diện React.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Solidity</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Ethereum</span>
+                    <span class="tech-tag">React</span>
+                </div>
+                <a href="#" class="cta-button">View Demo</a>
+            </div>
+            <div class="project-card">
+                <i class="fas fa-comment-dots project-icon"></i>
+                <h3>NLP Sentiment</h3>
+                <p>Phân tích cảm xúc văn bản để hỗ trợ chốt deal, sử dụng NLP, FastAPI và các mô hình AI/ML.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">AI/ML</span>
+                </div>
+                <a href="#" class="cta-button">View Demo</a>
+            </div>
+            <div class="project-card">
+                <i class="fas fa-ellipsis-h project-icon"></i>
+                <h3>And More Coming...</h3>
+                <p>Portfolio luôn được cập nhật thêm: từ AI đa modal, phân tích hành vi người dùng đến xử lý dữ liệu đa chiều.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Updating</span>
+
+                </div>
+                <a href="#projects" class="cta-button">Follow Updates</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 animate__animated">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Liên hệ</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Hãy liên hệ với tôi nếu bạn có bất kỳ câu hỏi hoặc dự án
+                    nào cần thảo luận.</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="md:w-1/2">
+                    <div class="rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6">Gửi tin nhắn</h3>
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Họ và tên</label>
+                                <input type="text" id="name" name="name"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-300"
+                                    placeholder="Nhập họ và tên của bạn" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-300"
+                                    placeholder="example@email.com" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Tin
+                                    nhắn</label>
+                                <textarea id="message" name="message" rows="4"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-300"
+                                    placeholder="Nhập nội dung tin nhắn của bạn" required></textarea>
+                            </div>
+                            <div>
+                                <button type="submit"
+                                    class="w-full btn-primary text-white px-6 py-3 rounded-lg font-medium">Gửi tin
+                                    nhắn</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="rounded-xl shadow-lg p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">Thông tin liên hệ</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 shrink-0">
+                                    <i data-feather="mail" class="text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <a href="mailto:info@example.com"
+                                        class="text-gray-600 hover:text-primary transition duration-300">haotrinh142@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 shrink-0">
+                                    <i data-feather="phone" class="text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Điện thoại</h4>
+                                    <a href="tel:+84123456789"
+                                        class="text-gray-600 hover:text-primary transition duration-300">0358 365
+                                        493</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 shrink-0">
+                                    <i data-feather="map-pin" class="text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Địa chỉ</h4>
+                                    <p class="text-gray-600">Kim Thư Thanh Oai Hà Nội</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <h4 class="font-bold mb-4">Kết nối với tôi</h4>
+                            <div class="flex space-x-4 mb-6">
+                                <a href="https://linkedin.com/in/trinhhao"
+                                    class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300"
+                                    data-tooltip="LinkedIn" aria-label="LinkedIn">
+                                    <i data-feather="linkedin" class="w-5 h-5"></i>
+                                </a>
+                                <a href="https://github.com/VietHann"
+                                    class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300"
+                                    data-tooltip="GitHub" aria-label="GitHub">
+                                    <i data-feather="github" class="w-5 h-5"></i>
+                                </a>
+                                <a href="https://twitter.com/trinhhao"
+                                    class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300"
+                                    data-tooltip="Twitter" aria-label="Twitter">
+                                    <i data-feather="twitter" class="w-5 h-5"></i>
+                                </a>
+                                <a href="https://instagram.com/trinhhao"
+                                    class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300"
+                                    data-tooltip="Instagram" aria-label="Instagram">
+                                    <i data-feather="instagram" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#"
+                                    class="social-icon w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition duration-300"
+                                    data-tooltip="Dribbble" aria-label="Dribbble">
+                                    <i data-feather="dribbble" class="w-5 h-5"></i>
+                                </a>
+                            </div>
+                            <div class="mt-6">
+                                <a href="/assets/cv.pdf" class="cta-button" target="_blank">
+                                    <i class="fas fa-file-pdf"></i> Download CV
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/VietHann" data-tooltip="GitHub" aria-label="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/trinhhao" data-tooltip="LinkedIn" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/trinhhao" data-tooltip="Twitter" aria-label="Twitter"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/trinhhao" data-tooltip="Instagram" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+            </div>
+            <p class="quote" style="font-style: italic; color: var(--text-muted); margin: 1.5rem 0;">
+                <span style="color: var(--primary-blue);">"Không chỉ viết code, mình đang viết nên hành trình tương lai của chính mình."</span> - Trinh Van Hao
+            </p>
+            <p>&copy; 2025 TrinhVanHao. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#00BFFF' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00BFFF',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Cuộn lên đầu và xóa hash khi tải hoàn tất
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Radar Chart
+function drawRadarChart() {
+    const canvas = document.getElementById('radarChart');
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 180;
+
+    const skills = [
+        { name: 'Giao tiếp', value: 90 },
+        { name: 'Quản lý thời gian', value: 85 },
+        { name: 'Làm việc nhóm', value: 88 },
+        { name: 'Tư duy phản biện', value: 82 },
+        { name: 'Marketing', value: 70 },
+        { name: 'Sáng tạo', value: 85 }
+    ];
+
+    const angleStep = (Math.PI * 2) / skills.length;
+    let currentAngle = -Math.PI / 2; // Start from top
+
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw grid circles
+    ctx.strokeStyle = 'rgba(0, 191, 255, 0.2)';
+    ctx.lineWidth = 1;
+    for (let i = 1; i <= 5; i++) {
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, (radius * i) / 5, 0, Math.PI * 2);
+        ctx.stroke();
+    }
+
+    // Draw grid lines
+    skills.forEach((_, index) => {
+        const angle = currentAngle + (angleStep * index);
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+        
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    });
+
+    // Draw skill labels
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '12px Inter';
+    ctx.textAlign = 'center';
+    skills.forEach((skill, index) => {
+        const angle = currentAngle + (angleStep * index);
+        const labelRadius = radius + 20;
+        const x = centerX + Math.cos(angle) * labelRadius;
+        const y = centerY + Math.sin(angle) * labelRadius;
+        
+        ctx.fillText(skill.name, x, y);
+    });
+
+    // Draw skill polygon
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#FFD700');
+    gradient.addColorStop(1, '#FF6B35');
+
+    ctx.beginPath();
+    skills.forEach((skill, index) => {
+        const angle = currentAngle + (angleStep * index);
+        const skillRadius = (radius * skill.value) / 100;
+        const x = centerX + Math.cos(angle) * skillRadius;
+        const y = centerY + Math.sin(angle) * skillRadius;
+        
+        if (index === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    });
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(255, 215, 0, 0.2)';
+    ctx.fill();
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Draw skill points
+    skills.forEach((skill, index) => {
+        const angle = currentAngle + (angleStep * index);
+        const skillRadius = (radius * skill.value) / 100;
+        const x = centerX + Math.cos(angle) * skillRadius;
+        const y = centerY + Math.sin(angle) * skillRadius;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    });
+}
+
+// Animate radar chart when visible
+const radarObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                drawRadarChart();
+            }, 500);
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+const radarChart = document.getElementById('radarChart');
+if (radarChart) {
+    radarObserver.observe(radarChart);
+}
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__zoomIn');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections and timeline stats
+        document.querySelectorAll('section.animate__animated, #certificates .grid').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.animate__animated, .fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            const submitBtn = e.target.querySelector('.btn-primary');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Đã gửi!';
+                submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                alert('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi sớm nhất có thể.');
+                e.target.reset();
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                }, 3000);
+            }, 2000);
+        });
+
+
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#FFD700', '#00BFFF', '#8A2BE2', '#FF6B35'];
+            const confettiCount = 50;
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.zIndex = '10000';
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                document.body.appendChild(confetti);
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 2000 + 1000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+
+        // Dark mode toggle (placeholder - already in dark mode)
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            alert('Dark mode is already active! 🌙');
+        });
+
+        // Search functionality (placeholder)
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = e.target.value.toLowerCase();
+                if (query) {
+                    alert(`Searching for: "${query}"\nThis is a demo search function.`);
+                    e.target.value = '';
+                }
+            }
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.cta-button, .btn-primary').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item, .fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+        // Timeline progress animation
+        const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate__fadeIn');
+            const timelineProgress = document.querySelector('.timeline-progress');
+            const timelineItems = document.querySelectorAll('.timeline-item.animate__fadeIn');
+            if (timelineProgress && timelineItems.length > 0) {
+                const progress = (timelineItems.length / document.querySelectorAll('.timeline-item').length) * 100;
+                requestAnimationFrame(() => {
+                    timelineProgress.style.height = progress + '%';
+                });
+            }
+        }
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.timeline-item, .timeline-year, .timeline-end').forEach(item => {
+    timelineObserver.observe(item);
+});
+
+        // Timeline stats counter animation
+        const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        console.log('Timeline Stats in view:', entry.isIntersecting);
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate__zoomIn');
+            const counters = entry.target.querySelectorAll('.orbitron');
+            console.log('Counters found:', counters.length);
+            counters.forEach(counter => {
+                const target = parseFloat(counter.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target % 1 === 0 ? target : target.toFixed(1);
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = current % 1 === 0 ? Math.floor(current) : current.toFixed(1);
+                    }
+                }, 30);
+            });
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+const timelineStats = document.querySelector('#certificates .grid');
+if (timelineStats) {
+    statsObserver.observe(timelineStats);
+} else {
+    console.error('Timeline Stats element not found');
+}
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            timelineObserver.observe(item);
+        });
+
+
+
+        // Timeline card click interactions
+        document.querySelectorAll('.timeline-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const title = this.querySelector('h3').textContent;
+                const isAchievement = this.classList.contains('achievement-card');
+                const type = isAchievement ? 'thành tích' : 'chứng chỉ';
+
+                // Add pulse effect
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+
+                console.log(`Xem chi tiết ${type}: ${title}`);
+            });
+        });
+        // Add CSS for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%; 
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+            }
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>
