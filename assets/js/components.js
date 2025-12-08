@@ -80,47 +80,24 @@ class MusicPlayerWidget {
     }
 
     async loadMusicFolder() {
-        // Dynamically load music files from assets/music folder
-        try {
-            const response = await fetch('assets/music/');
-            if (response.ok) {
-                // Hardcode known files for now
-                const files = ['Ordinary.mp3', "Somebody'S Pleasure.mp3"];
-                this.playlist = files.map(file => {
-                    // Convert filename to thumbnail name: remove extension, lowercase, replace spaces/special chars with underscore
-                    const baseName = file.replace('.mp3', '')
-                        .toLowerCase()
-                        .replace(/['']/g, '') // Remove apostrophes
-                        .replace(/\s+/g, '_') // Replace spaces with underscore
-                        .trim();
-                    
-                    return {
-                        title: file.replace('.mp3', ''),
-                        artist: 'Your Music',
-                        file: `assets/music/${file}`,
-                        thumbnail: `assets/images/${baseName}.jpg`
-                    };
-                });
-                console.log('Loaded playlist:', this.playlist);
-            }
-        } catch (e) {
-            console.log('Loading default music files');
-            // Default fallback with correct paths
-            this.playlist = [
-                {
-                    title: 'Ordinary',
-                    artist: 'Your Music',
-                    file: 'assets/music/Ordinary.mp3',
-                    thumbnail: 'assets/images/ordinary.jpg'
-                },
-                {
-                    title: "Somebody's Pleasure",
-                    artist: 'Your Music',
-                    file: "assets/music/Somebody'S Pleasure.mp3",
-                    thumbnail: 'assets/images/somebody_pleasure.jpg'
-                }
-            ];
-        }
+        // Hardcode known files with correct relative paths
+        const files = ['Ordinary.mp3', "Somebody'S Pleasure.mp3"];
+        this.playlist = files.map(file => {
+            // Convert filename to thumbnail name: remove extension, lowercase, replace spaces/special chars with underscore
+            const baseName = file.replace('.mp3', '')
+                .toLowerCase()
+                .replace(/['']/g, '') // Remove apostrophes
+                .replace(/\s+/g, '_') // Replace spaces with underscore
+                .trim();
+            
+            return {
+                title: file.replace('.mp3', ''),
+                artist: 'Your Music',
+                file: `./assets/music/${file}`,
+                thumbnail: `./assets/images/${baseName}.jpg`
+            };
+        });
+        console.log('Loaded playlist:', this.playlist);
         
         // Only init AFTER playlist is loaded
         this.init();
