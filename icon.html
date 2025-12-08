@@ -1,144 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devicon PNG Scrolling</title>
+    <title>Lượt truy cập 2025</title>
     <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: Arial, sans-serif;
-            overflow-x: hidden;
-        }
-
-        .scrolling-container {
-            width: 100%;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px 0;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        .scrolling-row {
-            display: flex;
-            animation: scroll 30s linear infinite;
-            gap: 30px;
-        }
-
-        .icon-item {
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .icon-item:hover {
-            transform: translateY(-10px) scale(1.1);
-            background: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        .icon-item img {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-50% - 15px));
-            }
-        }
-
-        h1 {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .description {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
+        body { font-family: system-ui, sans-serif; text-align: center; padding: 80px 20px; background: #0f172a; color: white; }
+        .badge { margin: 30px 0; }
     </style>
 </head>
 <body>
-    <h1>Technology Stack</h1>
-    <p class="description">Scrolling showcase of development tools and technologies</p>
+
+    <h1>Chào mừng bạn ghé thăm!</h1>
+    <p>Bạn là khách thứ</p>
     
-    <div class="scrolling-container">
-        <div class="scrolling-row">
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="Sass"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" alt="GraphQL"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" alt="Webpack"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="NPM"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="AngularJS"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"></div>
-            
-            <!-- Duplicate for seamless loop -->
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="Sass"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop"></div>
-            <div class="icon-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio"></div>
-        </div>
+    <!-- Chỉ cần 1 dòng này là xong, đẹp lung linh -->
+    <div class="badge">
+<img src="https://api.visitorbadge.io/api/VisitorHit?url=https://portfolio.hayvie.click&label=Visitors&labelColor=%230f172a&countColor=%23ffffff" />
+
+
     </div>
+
+    <p>đến trang web này</p>
+
 </body>
 </html>

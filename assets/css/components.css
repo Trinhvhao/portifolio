@@ -1,0 +1,489 @@
+/* ==========================================================================
+   Visitor Counter Styles
+   ========================================================================== */
+.visitor-counter {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: rgba(0, 212, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 30px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 300;
+    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.2);
+    animation: slideInRight 0.5s ease-out;
+    font-size: 0.8rem;
+}
+
+.visitor-counter.nav-counter {
+    position: static;
+    top: auto;
+    right: auto;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    background: rgba(0, 212, 255, 0.15);
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    box-shadow: none;
+    animation: none;
+}
+
+body.light-mode .visitor-counter {
+    background: rgba(37, 99, 235, 0.15);
+    border: 2px solid #2563EB;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+body.light-mode .visitor-counter.nav-counter {
+    background: rgba(37, 99, 235, 0.1);
+    border: 2px solid #BFDBFE;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.visitor-counter i {
+    font-size: 0.95rem;
+    color: #fff;
+    animation: eyePulse 2s ease-in-out infinite;
+}
+
+@keyframes eyePulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.visitor-counter span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+body.light-mode .visitor-counter i {
+    color: #2563EB;
+}
+
+body.light-mode .visitor-counter span {
+    color: #1F2937;
+}
+
+.visitor-counter-number {
+    color: #FFD700;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+body.light-mode .visitor-counter-number {
+    color: #2563EB;
+}
+
+/* ==========================================================================
+   Music Player Widget Styles (Neon Theme - Match Portfolio)
+   ========================================================================== */
+.music-player-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(10, 10, 20, 0.92);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 212, 255, 0.1);
+    z-index: 900;
+    max-width: 320px;
+    animation: slideInUp 0.5s ease-out;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.music-player-widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 50px rgba(29, 185, 84, 0.4);
+}
+
+.music-player-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 8px;
+}
+
+.music-player-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #00BFFF;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.music-player-title::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #00BFFF, #8A2BE2);
+    border-radius: 2px;
+}
+
+.music-player-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.music-player-close:hover {
+    transform: rotate(90deg);
+}
+
+.music-player-content {
+    display: flex;
+    gap: 12px;
+}
+
+.music-player-cover {
+    width: 70px;
+    height: 70px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #00BFFF, #8A2BE2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+    animation: rotateAlbum 3s linear infinite;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.music-player-cover i {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.95);
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.music-player-cover::before {
+    content: none;
+}
+
+@keyframes rotateAlbum {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-player-widget:not(.playing) .music-player-cover {
+    animation: none;
+}
+
+.music-player-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.music-player-song-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.music-player-artist {
+    font-size: 0.8rem;
+    color: #b3b3b3;
+    margin: 4px 0 0 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.music-player-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.music-player-progress:hover {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.music-player-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #00BFFF, #8A2BE2);
+    border-radius: 2px;
+    width: 35%;
+    transition: width 0.2s linear;
+}
+
+.music-player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    gap: 8px;
+}
+
+.music-player-time {
+    font-size: 0.7rem;
+    color: #b3b3b3;
+    font-weight: 500;
+}
+
+.music-player-btn {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-player-btn:hover {
+    color: #00BFFF;
+    transform: scale(1.15);
+}
+
+.music-player-play-btn {
+    background: linear-gradient(135deg, #00BFFF, #8A2BE2);
+    color: white;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-player-play-btn:hover {
+    background: linear-gradient(135deg, #00FFFF, #9D3FFF);
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.music-player-volume {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.music-player-volume-slider {
+    flex: 1;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.music-player-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.music-player-volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+}
+
+.music-player-volume-slider::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.music-player-volume-slider::-moz-range-thumb:hover {
+    transform: scale(1.3);
+}
+
+/* Minimized State */
+.music-player-widget.minimized {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.music-player-widget.minimized .music-player-header,
+.music-player-widget.minimized .music-player-info,
+.music-player-widget.minimized .music-player-progress,
+.music-player-widget.minimized .music-player-controls,
+.music-player-widget.minimized .music-player-time,
+.music-player-widget.minimized .music-player-close {
+    display: none;
+}
+
+.music-player-widget.minimized .music-player-content {
+    gap: 0;
+    margin: 0;
+}
+
+.music-player-widget.minimized .music-player-cover {
+    width: 60px;
+    height: 60px;
+    margin: 0;
+    animation: none;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.music-player-toggle-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: linear-gradient(135deg, #00BFFF, #8A2BE2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.music-player-widget.minimized .music-player-toggle-btn {
+    opacity: 1;
+    position: static;
+    display: none;
+}
+
+.music-player-widget.minimized:hover .music-player-toggle-btn {
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .visitor-counter {
+        top: 10px;
+        right: 10px;
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+
+    .music-player-widget {
+        bottom: 20px;
+        right: 20px;
+        max-width: 280px;
+    }
+
+    .music-player-cover {
+        width: 60px;
+        height: 60px;
+    }
+
+    .music-player-song-title {
+        font-size: 0.9rem;
+    }
+
+    .music-player-artist {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .visitor-counter {
+        top: 8px;
+        right: 8px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .music-player-widget {
+        bottom: 15px;
+        right: 15px;
+        max-width: 250px;
+        padding: 12px;
+    }
+
+    .music-player-widget.minimized {
+        width: 50px;
+        height: 50px;
+    }
+
+    .music-player-cover {
+        width: 50px;
+        height: 50px;
+    }
+}
